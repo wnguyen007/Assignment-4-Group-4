@@ -1,0 +1,4 @@
+```{r Loading dataset}
+dat = read.csv("Data/IMDb movies.csv")
+```
+
