@@ -11,24 +11,23 @@ library(ggpubr)
 library(viridis)
 ```
 
-```{r LoadingDataset}
+```{r LoadingDataset, message=FALSE, warning=FALSE}
 data <- read.csv("Data/IMDb movies.csv")
 glimpse(data)
 ```
 
-```{r CleaningData}
+```{r CleaningData, echo=FALSE, message=FALSE, warning=FALSE}
 cleandata <- data %>% rename(Title = title, Year = year, Language = language, Production_Company = production_company, Budget = budget, USA_Gross = usa_gross_income, User_Reviews = reviews_from_users, Critic_Reviews = reviews_from_critics) %>% select(Title, Year, Language, Production_Company, Budget, USA_Gross, User_Reviews, Critic_Reviews)
 
 glimpse(cleandata)
 ```
 
-```{r PrepData}
+```{r PrepData, message=FALSE, warning=FALSE}
 grossdata <- cleandata %>%  filter((!Budget == "" | NA), (!USA_Gross == "" | NA))
-
 reviewdata <- cleandata %>%  filter((!User_Reviews == "" | NA), (!Critic_Reviews == "" | NA))
 ```
 
-```{r AvengersPlot, fig.cap="Avengers Budget v/s Gross", fig.align="center"}
+```{r AvengersPlot, fig.cap="Avengers Budget v/s Gross", fig.align="center", echo=FALSE}
 grossdata %>% select(Title, Production_Company, Budget, USA_Gross) %>% 
   filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>% 
   ggplot(aes(x = Budget, y = USA_Gross, label = Title)) +
@@ -37,7 +36,7 @@ grossdata %>% select(Title, Production_Company, Budget, USA_Gross) %>%
   ggtitle("Avenger Movies Gross") + theme_bw()
 ```
 
-```{r AvengersReview, fig.cap="Avengers Popularity", fig.align="center"}
+```{r AvengersReview, fig.cap="Avengers Popularity", fig.align="center", echo=FALSE}
 reviewdata %>% select(Title, Year, Production_Company, User_Reviews, Critic_Reviews) %>% 
   filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>% 
   ggplot(aes(x = Critic_Reviews, y = User_Reviews, color = Title, label = Year)) +
@@ -46,7 +45,7 @@ reviewdata %>% select(Title, Year, Production_Company, User_Reviews, Critic_Revi
   ggtitle("Avenger Movies Popularity") + theme_bw()
 ```
 
-```{r SpiderManPlot, fig.cap="Spider-Man Budget v/s Gross", fig.align="center"}
+```{r SpiderManPlot, fig.cap="Spider-Man Budget v/s Gross", fig.align="center", echo=FALSE}
 grossdata %>% select(Title, Language, Production_Company, Budget, USA_Gross) %>% 
   filter(Title %in% c("Spider-Man", "Spider-Man 2", "Spider-Man 3", "The Amazing Spider-Man", "The Amazing Spider-Man 2", "Spider-Man: Homecoming", "Spider-Man: Far from Home")) %>%
   ggplot(aes(x = Budget, y = USA_Gross, label = Title)) +
@@ -55,7 +54,7 @@ grossdata %>% select(Title, Language, Production_Company, Budget, USA_Gross) %>%
   ggtitle("Spider-Man Movies Gross") + theme_bw()
 ```
 
-```{r SpiderManReview, fig.cap="Spider-Man Popularity", fig.align="center"}
+```{r SpiderManReview, fig.cap="Spider-Man Popularity", fig.align="center", echo=FALSE}
 reviewdata %>% select(Title, Year, Production_Company, User_Reviews, Critic_Reviews) %>% 
   filter(Title %in% c("Spider-Man", "Spider-Man 2", "Spider-Man 3", "The Amazing Spider-Man", "The Amazing Spider-Man 2", "Spider-Man: Homecoming", "Spider-Man: Far from Home")) %>% 
   ggplot(aes(x = Critic_Reviews, y = User_Reviews, color = Title, label = Year)) +
@@ -64,7 +63,7 @@ reviewdata %>% select(Title, Year, Production_Company, User_Reviews, Critic_Revi
   ggtitle("Spider-Man Movies Popularity") + theme_bw()
 ```
 
-```{r AllReviewsPlot, fig.cap="All-time Popularity", fig.width=12, fig.height=6, fig.align="center"}
+```{r AllReviewsPlot, fig.cap="All-time Popularity", fig.width=12, fig.height=6, fig.align="center", echo=FALSE, warning=FALSE}
 reviewdata %>%
   ggplot(aes(x = Critic_Reviews, y = User_Reviews, label = Title)) +
   geom_point() +
@@ -73,7 +72,7 @@ reviewdata %>%
   ggtitle("Most-Talked-About Movies by Users & Critics") + theme_bw()
 ```
 
-```{r AllGrossPlot, fig.width=10, fig.align="center"}
+```{r AllGrossPlot, fig.cap="Some all-time Popular Movies and their Gross", fig.height=6, fig.width=10, fig.align="center", echo=FALSE, warning=FALSE}
 grossdata %>% select(Title, Year, Budget, USA_Gross) %>% 
   filter(Title %in% c("Avengers: Endgame", "Joker", "The Shawshank Redemption", "Captain Marvel", "The Dark Knight", "Star Wars: Episode VIII - The Last Jedi", "The Lord of the Rings: The Fellowship of the Ring", "Avengers: Infinity War", "The Matrix", "Avatar", "Star Wars: Episode VII - The Force Awakens", "Once Upon a Time in Hollywood", "Black Panther", "The Godfather", "The Godfather: Part II", "The Godfather: Part III", "Bohemian Rhapsody", "Man of Steel", "Prometheus", "Batman v Superman: Dawn of Justice", "Star Wars: Episode I - The Phantom Menace", "Indiana Jones and the Kingdom of the Crystal Skull", "The Shape of Water")) %>%
   ggplot(aes(x = Budget, y = USA_Gross, label = Title, color = Year)) +
