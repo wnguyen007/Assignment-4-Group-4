@@ -1,7 +1,14 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
 ```{r Libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tidyselect)
 library(ggpubr)
+library(viridis)
 ```
 
 ```{r LoadingDataset}
@@ -10,46 +17,70 @@ glimpse(data)
 ```
 
 ```{r CleaningData}
-cleandata <- data %>% rename(Title = title, Genre = genre, Country = country, Language = language, Production_Company = production_company, Budget = budget, USA_Gross = usa_gross_income, User_Review = reviews_from_users, Critic_Review = reviews_from_critics) %>% select(Title, Genre, Country, Language, Production_Company, Budget, USA_Gross, User_Review, Critic_Review)
+cleandata <- data %>% rename(Title = title, Year = year, Language = language, Production_Company = production_company, Budget = budget, USA_Gross = usa_gross_income, User_Reviews = reviews_from_users, Critic_Reviews = reviews_from_critics) %>% select(Title, Year, Language, Production_Company, Budget, USA_Gross, User_Reviews, Critic_Reviews)
 
 glimpse(cleandata)
 ```
 
-```{r PrepGrossData}
-grossdata <- cleandata %>% select(1:7) %>%  filter((!Budget == "" | NA), (!USA_Gross == "" | NA))
+```{r PrepData}
+grossdata <- cleandata %>%  filter((!Budget == "" | NA), (!USA_Gross == "" | NA))
+
+reviewdata <- cleandata %>%  filter((!User_Reviews == "" | NA), (!Critic_Reviews == "" | NA))
 ```
 
-```{r, fig.width=12}
-avengersbudget <- grossdata %>% select(Title, Language, Production_Company, Budget) %>% 
-  filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>%
-ggplot(aes(x = Title, y = Budget)) +
-  geom_bar(stat = "identity", fill = "forestgreen")
-
-avengersgross <- grossdata %>% select(Title, Language, Production_Company, USA_Gross) %>% 
-  filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>%
-ggplot(aes(x = Title, y = USA_Gross)) +
-  geom_bar(stat = "identity", fill = "black")
-
-ggarrange(avengersbudget, avengersgross)
+```{r AvengersPlot, fig.cap="Avengers Budget v/s Gross", fig.align="center"}
+grossdata %>% select(Title, Production_Company, Budget, USA_Gross) %>% 
+  filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>% 
+  ggplot(aes(x = Budget, y = USA_Gross, label = Title)) +
+  geom_point() +
+  geom_text(vjust = 0, nudge_y = 0.25)+
+  ggtitle("Avenger Movies Gross") + theme_bw()
 ```
 
-
-```{r, fig.width=10}
-marvel <- grossdata %>% select(Title, Production_Company, Budget, USA_Gross) %>% 
-  filter(Production_Company == "Marvel Studios") %>% 
-  ggplot(aes(x = Budget, y = USA_Gross, color = Title)) +
-  geom_point()
-marvel
-#plotly::ggplotly(marvel)
+```{r AvengersReview, fig.cap="Avengers Popularity", fig.align="center"}
+reviewdata %>% select(Title, Year, Production_Company, User_Reviews, Critic_Reviews) %>% 
+  filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>% 
+  ggplot(aes(x = Critic_Reviews, y = User_Reviews, color = Title, label = Year)) +
+  geom_point() +
+  geom_text(vjust = 0, nudge_y = 0.25)+
+  ggtitle("Avenger Movies Popularity") + theme_bw()
 ```
 
-```{r}
-reviewdata <- cleandata %>% select((1:5),(8:9)) %>%  filter((!User_Review == "" | NA), (!Critic_Review == "" | NA))
+```{r SpiderManPlot, fig.cap="Spider-Man Budget v/s Gross", fig.align="center"}
+grossdata %>% select(Title, Language, Production_Company, Budget, USA_Gross) %>% 
+  filter(Title %in% c("Spider-Man", "Spider-Man 2", "Spider-Man 3", "The Amazing Spider-Man", "The Amazing Spider-Man 2", "Spider-Man: Homecoming", "Spider-Man: Far from Home")) %>%
+  ggplot(aes(x = Budget, y = USA_Gross, label = Title)) +
+  geom_point() +
+  geom_text(vjust = 0, nudge_y = 0.25)+
+  ggtitle("Spider-Man Movies Gross") + theme_bw()
 ```
 
-```{r}
-reviewdata %>% filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>%
-  ggplot(aes(x = User_Review, y = Critic_Review, color = Title)) +
-  geom_point()
+```{r SpiderManReview, fig.cap="Spider-Man Popularity", fig.align="center"}
+reviewdata %>% select(Title, Year, Production_Company, User_Reviews, Critic_Reviews) %>% 
+  filter(Title %in% c("Spider-Man", "Spider-Man 2", "Spider-Man 3", "The Amazing Spider-Man", "The Amazing Spider-Man 2", "Spider-Man: Homecoming", "Spider-Man: Far from Home")) %>% 
+  ggplot(aes(x = Critic_Reviews, y = User_Reviews, color = Title, label = Year)) +
+  geom_point() +
+  geom_text(vjust = 0, nudge_y = 0.25)+
+  ggtitle("Spider-Man Movies Popularity") + theme_bw()
+```
+
+```{r AllReviewsPlot, fig.cap="All-time Popularity", fig.width=12, fig.height=6, fig.align="center"}
+reviewdata %>%
+  ggplot(aes(x = Critic_Reviews, y = User_Reviews, label = Title)) +
+  geom_point() +
+  geom_text(vjust = "inward", hjust = "inward") +
+  xlim(0, 1000) +
+  ggtitle("Most-Talked-About Movies by Users & Critics") + theme_bw()
+```
+
+```{r AllGrossPlot, fig.width=10, fig.align="center"}
+grossdata %>% select(Title, Year, Budget, USA_Gross) %>% 
+  filter(Title %in% c("Avengers: Endgame", "Joker", "The Shawshank Redemption", "Captain Marvel", "The Dark Knight", "Star Wars: Episode VIII - The Last Jedi", "The Lord of the Rings: The Fellowship of the Ring", "Avengers: Infinity War", "The Matrix", "Avatar", "Star Wars: Episode VII - The Force Awakens", "Once Upon a Time in Hollywood", "Black Panther", "The Godfather", "The Godfather: Part II", "The Godfather: Part III", "Bohemian Rhapsody", "Man of Steel", "Prometheus", "Batman v Superman: Dawn of Justice", "Star Wars: Episode I - The Phantom Menace", "Indiana Jones and the Kingdom of the Crystal Skull", "The Shape of Water")) %>%
+  ggplot(aes(x = Budget, y = USA_Gross, label = Title, color = Year)) +
+  geom_point() +
+  geom_text(vjust = "inward", hjust = "inward")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("'Most-talked-about' Movies & their Gross") +
+  scale_color_viridis(begin = 1, end = 0)
 ```
 
