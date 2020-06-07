@@ -1,6 +1,7 @@
 ```{r Libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tidyselect)
+library(ggpubr)
 ```
 
 ```{r LoadingDataset}
@@ -9,21 +10,46 @@ glimpse(data)
 ```
 
 ```{r CleaningData}
-cleandata <- data %>% rename(Title = title, Genre = genre, Country = country, Language = language, Production_Company = production_company, Budget = budget, USA_Gross = usa_gross_income, Worldwide_Gross = worlwide_gross_income, User_Review = reviews_from_users, Critic_Review = reviews_from_critics) %>% select(Title, Genre, Country, Language, Production_Company, Budget, USA_Gross, Worldwide_Gross, User_Review, Critic_Review)
+cleandata <- data %>% rename(Title = title, Genre = genre, Country = country, Language = language, Production_Company = production_company, Budget = budget, USA_Gross = usa_gross_income, User_Review = reviews_from_users, Critic_Review = reviews_from_critics) %>% select(Title, Genre, Country, Language, Production_Company, Budget, USA_Gross, User_Review, Critic_Review)
 
 glimpse(cleandata)
 ```
 
 ```{r PrepGrossData}
-grossdata <- cleandata %>% select(1:8) %>%  filter((!Budget == "" | NA), (!USA_Gross == "" | NA))
+grossdata <- cleandata %>% select(1:7) %>%  filter((!Budget == "" | NA), (!USA_Gross == "" | NA))
 ```
 
-```{r, eval=FALSE}
-grossdata %>% select(Title, Language, Production_Company, Budget, Worldwide_Gross) %>% 
-  filter(Language == "English") %>% 
-  arrange(desc(Worldwide_Gross)) %>% head(10) %>%  
-ggplot(aes(x = Budget, y = Worldwide_Gross)) +
-  geom_bar(stat = "identity", fill = "black") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```{r, fig.width=12}
+avengersbudget <- grossdata %>% select(Title, Language, Production_Company, Budget) %>% 
+  filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>%
+ggplot(aes(x = Title, y = Budget)) +
+  geom_bar(stat = "identity", fill = "forestgreen")
+
+avengersgross <- grossdata %>% select(Title, Language, Production_Company, USA_Gross) %>% 
+  filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>%
+ggplot(aes(x = Title, y = USA_Gross)) +
+  geom_bar(stat = "identity", fill = "black")
+
+ggarrange(avengersbudget, avengersgross)
+```
+
+
+```{r, fig.width=10}
+marvel <- grossdata %>% select(Title, Production_Company, Budget, USA_Gross) %>% 
+  filter(Production_Company == "Marvel Studios") %>% 
+  ggplot(aes(x = Budget, y = USA_Gross, color = Title)) +
+  geom_point()
+marvel
+#plotly::ggplotly(marvel)
+```
+
+```{r}
+reviewdata <- cleandata %>% select((1:5),(8:9)) %>%  filter((!User_Review == "" | NA), (!Critic_Review == "" | NA))
+```
+
+```{r}
+reviewdata %>% filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>%
+  ggplot(aes(x = User_Review, y = Critic_Review, color = Title)) +
+  geom_point()
 ```
 
