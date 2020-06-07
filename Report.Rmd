@@ -1,4 +1,29 @@
-```{r Loading dataset}
-dat = read.csv("Data/IMDb movies.csv")
+```{r Libraries, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidyselect)
+```
+
+```{r LoadingDataset}
+data <- read.csv("Data/IMDb movies.csv")
+glimpse(data)
+```
+
+```{r CleaningData}
+cleandata <- data %>% rename(Title = title, Genre = genre, Country = country, Language = language, Production_Company = production_company, Budget = budget, USA_Gross = usa_gross_income, Worldwide_Gross = worlwide_gross_income, User_Review = reviews_from_users, Critic_Review = reviews_from_critics) %>% select(Title, Genre, Country, Language, Production_Company, Budget, USA_Gross, Worldwide_Gross, User_Review, Critic_Review)
+
+glimpse(cleandata)
+```
+
+```{r PrepGrossData}
+grossdata <- cleandata %>% select(1:8) %>%  filter((!Budget == "" | NA), (!USA_Gross == "" | NA))
+```
+
+```{r, eval=FALSE}
+grossdata %>% select(Title, Language, Production_Company, Budget, Worldwide_Gross) %>% 
+  filter(Language == "English") %>% 
+  arrange(desc(Worldwide_Gross)) %>% head(10) %>%  
+ggplot(aes(x = Budget, y = Worldwide_Gross)) +
+  geom_bar(stat = "identity", fill = "black") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
