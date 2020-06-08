@@ -34,7 +34,7 @@ most_language <- dat %>%
     arrange(-total) %>%
     treemap(publisher_tm, index = "language",
                   vSize = "total",
-                  fontsize.labels = 12,
+                 fontsize.labels = 12,
                   palette = "YlOrRd",
             title = "The proportion of top 100 movie language",
               
