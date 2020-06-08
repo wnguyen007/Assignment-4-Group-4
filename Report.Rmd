@@ -44,4 +44,27 @@ most_language <- dat %>%
                        fontsize.title = 20)
 ```
 
- 
+## Number of top 9 languages between 2009 and 2019
+
+```{r language_year,echo = FALSE,fig.cap="Number of top 9 languages between 2009 and 2019"}
+
+top9 <- dat %>% 
+  filter(year %in% c(2009:2019)) 
+top_9_last <- head(names(sort(table(top9$language),decreasing = TRUE)),9) 
+
+
+language_9 <- dat %>% 
+  select (year,language) %>% 
+  filter(language %in% top_9_last ,year %in% c(2009:2019)) %>% 
+  group_by (year,language) %>%  
+  count(language)
+
+language_9 %>% 
+  ggplot(aes(x= year, y= n))+
+  geom_line()+
+  facet_wrap(~ language,,scales = "free_y")+
+  scale_x_continuous(breaks = seq(2009, 2019, by = 1))+
+  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=1)) +
+  xlab("year")+
+  ylab("Number of top 9 languages between 2009 and 2019")
+```
