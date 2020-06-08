@@ -1,4 +1,47 @@
-```{r Loading dataset}
+---
+title: "Untitled"
+output:
+  html_document:
+    df_print: paged
+keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE)
+```
+
+
+
+```{r Loading dataset,echo = FALSE}
 dat = read.csv("Data/IMDb movies.csv")
 ```
 
+```{r,echo = FALSE}
+library(tidyverse)
+library(treemap)
+library(bookdown)
+library(knitr)
+```
+
+# Language
+
+## The proportion of top 100 movie language
+
+```{r language,echo=FALSE,fig.cap="The proportion of top 100 movie language",warning=FALSE}
+top100 <- head(names(sort(table(dat$language),decreasing = TRUE)),100) 
+most_language <- dat %>% 
+    filter(language %in% top100) %>% 
+    group_by(language) %>%
+    summarize(total = n()) %>%
+    arrange(-total) %>%
+    treemap(publisher_tm, index = "language",
+                  vSize = "total",
+                  fontsize.labels = 12,
+                  palette = "YlOrRd",
+            title = "The proportion of top 100 movie language",
+              
+                 
+                       fontsize.title = 20)
+```
+
+ 
