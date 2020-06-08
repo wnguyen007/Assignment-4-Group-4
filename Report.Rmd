@@ -2,6 +2,7 @@
 library(tidyverse)
 library(dplyr)
 library(kableExtra)
+library(bookdown)
 ```
 
 
@@ -17,6 +18,8 @@ dat %>%
         kable(caption = "Metascore summary") %>%
         kable_styling(bootstrap_options = c("striped", "hover"))
 ```
+According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
+Therefore, it is important to first consider the distribution of metascore within the data set. This is summarised by Table \@ref(tab:metascoretable). The most noteworthy features are that the median and mean are very close at 56 and 55.76 respectively and nearly 70,000 movies have not been assigned a metascore. Consequently, any analysis related to the metascore variable must be treated with caution as less than 20% of the movies are represented. 
 
 ```{r metascore scatterplot, warning = FALSE, fig.cap = "metascore over time"}
 f1 = dat %>%
@@ -24,6 +27,8 @@ f1 = dat %>%
              geom_point()
 f1
 ```
+
+As expected, the scatter plot depicted in \@ref(fig:metascore scatterplot) is not particularly informative and potentially misleading. Although the spread is increasing, one can still identify a negative correlation which suggests that the quality of movies has degraded over time. However, it is important to recognise that this dataset was taken from IMDb which means that sampling was far from random. IMDb has much more incentive to review recently released movies. Hence, when older movies are reviewed, it is likely because it is still immensely popular (i.e. a 'classic').
 
 ```{r toptwentytable}
 dat2wn <- dat %>%
@@ -48,3 +53,7 @@ dat3wn %>%
         xlab("Year") +
         ylab("")
 ```
+
+The aforementioned 'classics bias' is further confirmed by both Table \@ref(tab:toptwentytable) and Figure \@ref(fig:toptwentyhistogram). This list is dominated by the most famous movies from the 1900's such as The Wizard of Oz, Citizen Kane and The Godfather which were all assigned perfect metascores. Moreover, seventeen of the twenty listed movies were released before 1975 and only one was released after 2000.
+
+Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger. 
