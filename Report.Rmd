@@ -84,6 +84,5 @@ most_genre <- dat %>%
                   fontsize.labels = 12,
                   palette = "YlOrRd",
                   title="The proportion of top 100 movie genres",
-     
                        fontsize.title = 20)
 ```
