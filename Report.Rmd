@@ -112,3 +112,23 @@ ggplot(dat_genre, aes(x = year, y = n))+
   scale_x_continuous(breaks = seq(2009,2019, by = 1))+
   theme(axis.text.x = element_text(angle=90, hjust=1, vjust=1)) 
 ```
+
+# The largest number of movies genres in each country
+
+```{r max_genres,echo = FALSE}
+dat_genre_country <- dat %>% 
+  select (country, genre,year) %>%  
+  filter(year %in% c(2000:2020)) %>% 
+  group_by(country) %>% 
+  count(genre) 
+
+
+max_dat_genre_country <- dat_genre_country %>%  
+    group_by(country) %>% 
+    filter( n==max(n)) %>% 
+    arrange(desc(n)) 
+kable(
+max_dat_genre_country[1:10,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
+    
+
+```
