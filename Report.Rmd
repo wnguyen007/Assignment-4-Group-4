@@ -86,3 +86,18 @@ most_genre <- dat %>%
                   title="The proportion of top 100 movie genres",
                        fontsize.title = 20)
 ```
+
+## Number of top 10 genres of movies published from 2009 to 2019
+
+```{r genres_year,echo = FALSE,fig.cap="Number of top 10 types of movies published from 2009 to 2019"}
+top10_genres <- dat %>% 
+  filter(year %in% c(2009:2019)) 
+top_10_genres <- head(names(sort(table(top10_genres$genre),decreasing = TRUE)),10) 
+
+dat_genre <- dat %>% 
+  select (genre,year) %>% 
+  filter(genre %in%top_10_genres,year %in% c(2009:2019)) %>%
+  group_by(genre,year) %>% 
+  count(year) %>% 
+  arrange(desc(n)) 
+```
