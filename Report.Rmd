@@ -22,8 +22,9 @@ library(knitr)
 ```
 
 # Language
-
+ 
 ## The proportion of top 100 movie language
+
 
 ```{r language,echo=FALSE,fig.cap="The proportion of top 100 movie language",warning=FALSE}
 top100 <- head(names(sort(table(dat$language),decreasing = TRUE)),100) 
@@ -43,7 +44,7 @@ most_language <- dat %>%
 ```
 
  
-The figure \@ref(fig:language)shows the proportion of the number top 100 languages. It can clearly to see that the English movies account for almost half of all movies. French, Spanish, Japanese, Italian almost have the same proportion with the number of above 2500.It is very clearly to see the situation about the distubtion. 
+The figure \@ref(fig:language)shows the proportion of the number top 100 languages. It can clearly be seen that the English movies account for almost half of all movies. French, Spanish, Japanese, Italian almost have the same proportion with the number of above 2500. It is very clear to see the situation about the distribution. 
 
 ## Number of top 9 languages between 2009 and 2019
 
@@ -70,8 +71,7 @@ language_9 %>%
   ylab("Number of top 9 languages between 2009 and 2019")
 ```
 
-figure \@ref(fig:language_year) shows the number of different languages movies between 2009 and 2019. It can be clearly see that the The largest number of movie languages is English, it has an increasing trend between 2009 and 2017 and drop to 600 in 2019. The number of  Korean language movie have the minimum quantity within the 9 languages, it shows a decreasing trend during the ten years. The number of French,German, Japanese and Italian, they almost maintained the level from 2009 to 2017, and then sharply decreased to 2019.
-
+figure \@ref(fig:language_year) shows the number of different languages movies between 2009 and 2019. It can be clearly seen that the largest number of movie languages is English, it has an increasing trend between 2009 and 2017 and will drop to 600 in 2019. The number of  Korean language movies have the minimum quantity within the 9 languages, it shows a decreasing trend during the ten years. The number of French,German, Japanese and Italian, they almost maintained the level from 2009 to 2017, and then sharply decreased to 2019.
 #  Genres 
 
 ## The proportion of top 100 movie genres
@@ -159,5 +159,5 @@ max_dat_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of m
  
 ```
 
-Table \@ref(tab:max_genres) show the largest number of movies genres in each country in the 21st century, according to this table, we can see the the largest number of movies in many countries is drama, According Table \@ref(tab:pret_drame) , it shows the drama has the largest proprotion with 58.84%, However, the second place comedy only reached 8%.
+Table \@ref(tab:max_genres) show the largest number of movies genres in each country in the 21st century, according to this table, we can see the the largest number of movies in many countries is drama, According Table \@ref(tab:pret_drame) , it shows the drama has the largest proportion with 58.84%, However, the second place comedy only reached 8%.
  
