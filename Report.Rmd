@@ -68,3 +68,22 @@ language_9 %>%
   xlab("year")+
   ylab("Number of top 9 languages between 2009 and 2019")
 ```
+#  Genres 
+
+## The proportion of top 100 movie genres
+
+```{r genres,echo = FALSE,fig.cap="The proportion of top 100 movie genres"}
+top100_genre<- head(names(sort(table(dat$genre),decreasing = TRUE)),100) 
+most_genre <- dat %>% 
+    filter(genre %in% top100_genre) %>% 
+    group_by(genre) %>%
+    summarize(total = n()) %>%
+    arrange(-total) %>%
+    treemap(publisher_tm, index = "genre",
+                  vSize = "total",
+                  fontsize.labels = 12,
+                  palette = "YlOrRd",
+                  title="The proportion of top 100 movie genres",
+     
+                       fontsize.title = 20)
+```
