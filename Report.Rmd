@@ -1,4 +1,50 @@
-```{r Loading dataset}
-dat = read.csv("Data/IMDb movies.csv")
+```{r libraries, message = FALSE}
+library(tidyverse)
+library(dplyr)
+library(kableExtra)
 ```
 
+
+```{r Loading dataset}
+dat = read.csv("Data/IMDb movies.csv")
+glimpse(dat)
+```
+
+```{r metascoretable}
+dat %>% 
+        dplyr::select(metascore) %>%
+        summary() %>%
+        kable(caption = "Metascore summary") %>%
+        kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+```{r metascore scatterplot, warning = FALSE, fig.cap = "metascore over time"}
+f1 = dat %>%
+             ggplot(aes(x = year, y = metascore)) + 
+             geom_point()
+f1
+```
+
+```{r toptwentytable}
+dat2wn <- dat %>%
+               dplyr::select(title,
+                             year,
+                             metascore)
+
+dat3wn <- dat2wn %>%
+                arrange(-metascore)
+
+dat3wn %>%
+        head(20) %>%
+        kable(caption = "The top 20 movies arranged by metascore") %>%
+        kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+```{r toptwentyhistogram}
+dat3wn %>%
+        head(20) %>%
+        ggplot(aes(year)) + 
+        geom_histogram(binwidth = 5) +
+        xlab("Year") +
+        ylab("")
+```
