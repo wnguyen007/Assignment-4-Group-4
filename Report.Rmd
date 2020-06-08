@@ -132,3 +132,20 @@ max_dat_genre_country[1:10,],booktabs = TRUE, caption = ' The largest number of 
     
 
 ```
+
+```{r pret_drame, echo = FALSE}
+
+  drama_genre_country <- max_dat_genre_country%>% 
+  group_by(genre) %>%  
+  summarise(total = sum(n)) %>% 
+  mutate(total_movies = sum(total)) %>% 
+  mutate(prop_genre= total / total_movies) %>% 
+  arrange(desc(prop_genre)) %>% 
+  head(5)
+
+kable(
+max_dat_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
+
+  
+ 
+```
