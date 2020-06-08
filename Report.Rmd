@@ -10,8 +10,6 @@ keep_md: yes
 knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE)
 ```
 
-
-
 ```{r Loading dataset,echo = FALSE}
 dat = read.csv("Data/IMDb movies.csv")
 ```
