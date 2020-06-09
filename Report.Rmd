@@ -43,3 +43,12 @@ kable(col.names = c("Director",
 ```
 
 We get some interesting results, as on one hand there is Mike Leigh with as much as 13 movies but a lower average metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average metascore of 87 and 86 respectively. 
+
+```{r}
+directors %>%
+  ggplot(aes(x = director, y = movies, fill = metascore)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  xlab("") +
+  ylab("No. of Movies")
+```
