@@ -122,3 +122,23 @@ dat3 <- dat1 %>%
   filter(language %in% dat2$language) %>%
   group_by(language) %>%
   summarise(duration = mean(duration, na.rm = TRUE))
+```
+
+#### Is there a pattern in Movie length for various languages.
+
+```{r}
+dat3 %>%
+  kable(col.names = c("Language", "Avg. Movie Duration")) %>%
+  kable_styling()
+```
+
+```{r}
+dat3 %>%
+  ggplot(aes(x = language, y = duration, fill = language)) +
+  geom_col() +
+  ylab("Duration (in minutes)") +
+  xlab("") + 
+  theme(legend.position = "bottom", axis.text.x=element_blank())
+```
+
+From the plot above, we can infer that Hindi movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, english movies are usually the shortest at just 93 minutes.
