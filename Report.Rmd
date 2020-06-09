@@ -80,3 +80,14 @@ director_movie_final %>%
 ```
 
 It can be observed that the Alfonso Cuarón is the director of the top grossing movie **Harry Potter and the Prisoner of Azkaban** which made \$796,093,802 worldwide. Followed by, Damien Chazelle, the director of **La La Land** grossing \$446,092,35. Suprisingly, Patrick Wang, with an average metascore of 86 and a total of 4 movies made the least at just $101,934.
+
+```{r}
+director_movie_final %>%
+  mutate(director = fct_reorder(director, worlwide_gross_income)) %>%
+  ggplot(aes(y = director, x = worlwide_gross_income, fill = title)) +
+  geom_col() +
+  theme(legend.position = "top", legend.title = element_blank()) +
+  scale_x_continuous(label = comma) +
+  xlab("") +
+  ylab("")
+```
