@@ -16,6 +16,7 @@ library(tidyverse)
 library(scales)
 library(kableExtra)
 ```
+
 ## Director Analysis
 
 #### Most Successful Director
@@ -42,101 +43,3 @@ kable(col.names = c("Director",
 ```
 
 We get some interesting results, as on one hand there is Mike Leigh with as much as 13 movies but a lower average metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average metascore of 87 and 86 respectively. 
-
-```{r}
-directors %>%
-  ggplot(aes(x = director, y = movies, fill = metascore)) +
-  geom_col() +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
-  xlab("") +
-  ylab("No. of Movies")
-```
-
-#### Top Grossing Movie
-
-In this section, we'll look at the top grossing movie of the most successful directors that we established from Table \@ref(tab:dir_tab).
-
-```{r}
-director_movie <- dat %>%
-  right_join(directors, by = c("director" = "director")) %>%
-  select(director, title, worlwide_gross_income)
-
-director_movie$worlwide_gross_income = as.numeric(gsub("[\\$,]", "", director_movie$worlwide_gross_income))
-
-director_movie_final <- director_movie %>% 
-  group_by(director) %>%
-  summarise(worlwide_gross_income = max(worlwide_gross_income, na.rm = TRUE)) %>%
-  left_join(director_movie)
-
-director_movie_final %>%
-  select(director, title, worlwide_gross_income) %>%
-  arrange(-worlwide_gross_income) %>%
-  mutate(worlwide_gross_income = dollar(worlwide_gross_income)) %>%
-  kable(col.names = c("Director",
-                      "Highest Grossing Movie",
-                      "Total Revenue")) %>%
-  kable_styling()
-```
-It can be observed that the Alfonso Cuarón is the director of the top grossing movie **Harry Potter and the Prisoner of Azkaban** which made \$796,093,802 worldwide. Followed by, Damien Chazelle, the director of **La La Land** grossing \$446,092,35. Suprisingly, Patrick Wang, with an average metascore of 86 and a total of 4 movies made the least at just $101,934.
-
-```{r}
-director_movie_final %>%
-  mutate(director = fct_reorder(director, worlwide_gross_income)) %>%
-  ggplot(aes(y = director, x = worlwide_gross_income, fill = title)) +
-  geom_col() +
-  theme(legend.position = "top", legend.title = element_blank()) +
-  scale_x_continuous(label = comma) +
-  xlab("") +
-  ylab("")
-```
-
-## Movie Length and Language Analysis
-
-```{r}
-dat1 <- dat
-dat1$language <- ifelse(str_detect(dat1$language, ","), "multi-lingual", dat1$language)
-dat1$budget = as.numeric(gsub("[\\$,]", "", dat1$budget))
-```
-
-Let's look at some of the common movie languages.
-
-```{r}
-dat2 <- dat1 %>%
-  count(language) %>%
-  arrange(-n) %>%
-  head(10)
-```
-
-```{r}
-dat2 %>%
-  kable(col.names = c("Language", "Number of Movies")) %>%
-  kable_styling()
-```
-
-From the above table, it is quite clear that most movies are released in either only english or in multi-lingual format.
-
-```{r}
-dat3 <- dat1 %>%
-  filter(language %in% dat2$language) %>%
-  group_by(language) %>%
-  summarise(duration = mean(duration, na.rm = TRUE))
-```
-
-#### Is there a pattern in Movie length for various languages.
-
-```{r}
-dat3 %>%
-  kable(col.names = c("Language", "Avg. Movie Duration")) %>%
-  kable_styling()
-```
-
-```{r}
-dat3 %>%
-  ggplot(aes(x = language, y = duration, fill = language)) +
-  geom_col() +
-  ylab("Duration (in minutes)") +
-  xlab("") + 
-  theme(legend.position = "bottom", axis.text.x=element_blank())
-```
-
-From the plot above, we can infer that Hindi movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, english movies are usually the shortest at just 93 minutes.
