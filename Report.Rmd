@@ -52,3 +52,31 @@ directors %>%
   xlab("") +
   ylab("No. of Movies")
 ```
+
+#### Top Grossing Movie
+
+In this section, we'll look at the top grossing movie of the most successful directors that we established from Table \@ref(tab:dir_tab).
+
+```{r}
+director_movie <- dat %>%
+  right_join(directors, by = c("director" = "director")) %>%
+  select(director, title, worlwide_gross_income)
+
+director_movie$worlwide_gross_income = as.numeric(gsub("[\\$,]", "", director_movie$worlwide_gross_income))
+
+director_movie_final <- director_movie %>% 
+  group_by(director) %>%
+  summarise(worlwide_gross_income = max(worlwide_gross_income, na.rm = TRUE)) %>%
+  left_join(director_movie)
+
+director_movie_final %>%
+  select(director, title, worlwide_gross_income) %>%
+  arrange(-worlwide_gross_income) %>%
+  mutate(worlwide_gross_income = dollar(worlwide_gross_income)) %>%
+  kable(col.names = c("Director",
+                      "Highest Grossing Movie",
+                      "Total Revenue")) %>%
+  kable_styling()
+```
+
+It can be observed that the Alfonso Cuarón is the director of the top grossing movie **Harry Potter and the Prisoner of Azkaban** which made \$796,093,802 worldwide. Followed by, Damien Chazelle, the director of **La La Land** grossing \$446,092,35. Suprisingly, Patrick Wang, with an average metascore of 86 and a total of 4 movies made the least at just $101,934.
