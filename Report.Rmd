@@ -1,3 +1,23 @@
+---
+title: "Assignment 4 - Group 4"
+author:
+- familyname: Nguyen
+  othernames: William
+  address: Monash University
+  email: wngu0007@student.monash.edu
+  correspondingauthor: true
+  qualifications: Master of Actuarial Science
+department: Our consultancy \newline add names &\newline add names
+linestretch: 1.5
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 5
+    fig_width: 8
+    number_sections: yes
+    toc: true
+---
+
 ```{r libraries, message = FALSE}
 library(tidyverse)
 library(dplyr)
@@ -18,17 +38,19 @@ dat %>%
         kable(caption = "Metascore summary") %>%
         kable_styling(bootstrap_options = c("striped", "hover"))
 ```
+
 According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
+
 Therefore, it is important to first consider the distribution of metascore within the data set. This is summarised by Table \@ref(tab:metascoretable). The most noteworthy features are that the median and mean are very close at 56 and 55.76 respectively and nearly 70,000 movies have not been assigned a metascore. Consequently, any analysis related to the metascore variable must be treated with caution as less than 20% of the movies are represented. 
 
-```{r metascore scatterplot, warning = FALSE, fig.cap = "metascore over time"}
-f1 = dat %>%
+```{r metascorescatterplot, warning = FALSE, fig.cap = "metascore vs time"}
+f1wn = dat %>%
              ggplot(aes(x = year, y = metascore)) + 
              geom_point()
-f1
+f1wn
 ```
 
-As expected, the scatter plot depicted in \@ref(fig:metascore scatterplot) is not particularly informative and potentially misleading. Although the spread is increasing, one can still identify a negative correlation which suggests that the quality of movies has degraded over time. However, it is important to recognise that this dataset was taken from IMDb which means that sampling was far from random. IMDb has much more incentive to review recently released movies. Hence, when older movies are reviewed, it is likely because it is still immensely popular (i.e. a 'classic').
+As expected, the scatter plot depicted in Figure \@ref(fig:metascorescatterplot) is not particularly informative and potentially misleading. Although the spread is increasing, one can still identify a negative correlation which suggests that the quality of movies has degraded over time. However, it is important to recognise that this dataset was taken from IMDb which means that sampling was far from random. IMDb has much more incentive to review recently released movies. Hence, when older movies are reviewed, it is likely because it is still immensely popular (i.e. a 'classic').
 
 ```{r toptwentytable}
 dat2wn <- dat %>%
@@ -45,7 +67,7 @@ dat3wn %>%
         kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
-```{r toptwentyhistogram}
+```{r toptwentyhistogram, fig.cap = "Time distribution of top twenty movies"}
 dat3wn %>%
         head(20) %>%
         ggplot(aes(year)) + 
