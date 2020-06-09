@@ -10,7 +10,7 @@ author:
 department: Our consultancy \newline add names &\newline add names
 linestretch: 1.5
 output:
-  bookdown::pdf_document2:
+  bookdown::html_document2:
     fig_caption: yes
     fig_height: 5
     fig_width: 8
