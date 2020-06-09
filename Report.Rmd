@@ -91,3 +91,34 @@ director_movie_final %>%
   xlab("") +
   ylab("")
 ```
+
+## Movie Length and Language Analysis
+
+```{r}
+dat1 <- dat
+dat1$language <- ifelse(str_detect(dat1$language, ","), "multi-lingual", dat1$language)
+dat1$budget = as.numeric(gsub("[\\$,]", "", dat1$budget))
+```
+
+Let's look at some of the common movie languages.
+
+```{r}
+dat2 <- dat1 %>%
+  count(language) %>%
+  arrange(-n) %>%
+  head(10)
+```
+
+```{r}
+dat2 %>%
+  kable(col.names = c("Language", "Number of Movies")) %>%
+  kable_styling()
+```
+
+From the above table, it is quite clear that most movies are released in either only english or in multi-lingual format.
+
+```{r}
+dat3 <- dat1 %>%
+  filter(language %in% dat2$language) %>%
+  group_by(language) %>%
+  summarise(duration = mean(duration, na.rm = TRUE))
