@@ -1,13 +1,14 @@
 ---
-title: "Untitled"
+title: "Assignment 4 Xue Wang part"
 output:
   html_document:
     df_print: paged
 keep_md: yes
 ---
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = FALSE, cache=TRUE, message=FALSE, warning = FALSE)
 ```
 
 ```{r Loading dataset,echo = FALSE}
@@ -38,8 +39,6 @@ most_language <- dat %>%
                  fontsize.labels = 12,
                   palette = "YlOrRd",
             title = "The proportion of top 100 movie language",
-              
-                 
                        fontsize.title = 20)
 ```
 
@@ -63,8 +62,8 @@ language_9 <- dat %>%
 
 language_9 %>% 
   ggplot(aes(x= year, y= n))+
-  geom_line()+
-  facet_wrap(~ language,,scales = "free_y")+
+  geom_line(color = "steelblue",size = 2)+
+  facet_wrap(~ language,scales = "free_y")+
   scale_x_continuous(breaks = seq(2009, 2019, by = 1))+
   theme(axis.text.x = element_text(angle=90, hjust=1, vjust=1)) +
   xlab("year")+
@@ -147,16 +146,14 @@ max_dat_genre_country[1:10,],booktabs = TRUE, caption = ' The largest number of 
   drama_genre_country <- max_dat_genre_country%>% 
   group_by(genre) %>%  
   summarise(total = sum(n)) %>% 
+  ungroup() %>% 
   mutate(total_movies = sum(total)) %>% 
   mutate(prop_genre= total / total_movies) %>% 
   arrange(desc(prop_genre)) %>% 
   head(5)
 
 kable(
-max_dat_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
-
-  
- 
+drama_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
 ```
 
 Table \@ref(tab:max_genres) show the largest number of movies genres in each country in the 21st century, according to this table, we can see the the largest number of movies in many countries is drama, According Table \@ref(tab:pret_drame) , it shows the drama has the largest proportion with 58.84%, However, the second place comedy only reached 8%.
