@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit) (preloaded format=pdflatex 2020.4.14)  11 JUN 2020 18:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit) (preloaded format=pdflatex 2020.4.14)  11 JUN 2020 19:50
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -1357,7 +1357,7 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
-<MBSportrait.pdf, id=3, 213.79875pt x 90.3375pt>
+<MBSportrait.pdf, id=7, 213.79875pt x 90.3375pt>
 File: MBSportrait.pdf Graphic file (type pdf)
 <use MBSportrait.pdf>
 Package pdftex.def Info: MBSportrait.pdf  used on input line 295.
@@ -1631,121 +1631,121 @@ Overfull \hbox (56.23262pt too wide) detected at line 295
 
 {C:/Users/Rahul/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./MBSportra
 it.pdf>]
-LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
-(Font)              scaled to size 10.51207pt on input line 297.
 LaTeX Font Info:    Trying to load font information for TS1+mdbch on input line
- 301.
+ 302.
 
 ("C:\Users\Rahul\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mathdesign/mdbch\t
 s1mdbch.fd"
 File: ts1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for TS1/mdbch.
 )
 LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
-(Font)              scaled to size 10.51207pt on input line 301.
+(Font)              scaled to size 10.51207pt on input line 302.
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.24173pt on input line 308.
+(Font)              scaled to size 9.24173pt on input line 309.
 Package textcomp Info: Symbol \textcurrency not provided by
 (textcomp)             font family fvm in TS1 encoding.
-(textcomp)             Default family used instead on input line 333.
+(textcomp)             Default family used instead on input line 334.
 LaTeX Font Info:    Font shape `T1/cmtt/m/n' will be
-(Font)              scaled to size 11.73846pt on input line 333.
+(Font)              scaled to size 11.73846pt on input line 334.
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-333.
+334.
 ("C:\Users\Rahul\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1cmtt.fd"
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 10.51207pt on input line 346.
 LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
-(Font)              scaled to size 10.51207pt on input line 345.
+(Font)              scaled to size 10.51207pt on input line 346.
 Package textcomp Info: Symbol \textasciidieresis not provided by
 (textcomp)             font family mdbch in TS1 encoding.
-(textcomp)             Default family used instead on input line 360.
+(textcomp)             Default family used instead on input line 361.
 
 ("C:\Users\Rahul\AppData\Local\Programs\MiKTeX 2.9\tex/latex/microtype\mt-cmr.c
 fg"
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 ) [2]
-<Report_files/figure-latex/AvengersGross-1.pdf, id=28, 505.89pt x 216.81pt>
+<Report_files/figure-latex/AvengersGross-1.pdf, id=32, 505.89pt x 216.81pt>
 File: Report_files/figure-latex/AvengersGross-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/AvengersGross-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/AvengersGross-1.pdf  used on
- input line 397.
+ input line 398.
 (pdftex.def)             Requested size: 505.88875pt x 216.80946pt.
 
-Overfull \hbox (50.64467pt too wide) in paragraph at lines 397--398
+Overfull \hbox (50.64467pt too wide) in paragraph at lines 398--399
  [][] 
  []
 
 [3]
-<Report_files/figure-latex/AvengersReview-1.pdf, id=40, 505.89pt x 216.81pt>
+<Report_files/figure-latex/AvengersReview-1.pdf, id=45, 505.89pt x 216.81pt>
 File: Report_files/figure-latex/AvengersReview-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/AvengersReview-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/AvengersReview-1.pdf  used o
-n input line 408.
+n input line 409.
 (pdftex.def)             Requested size: 505.88875pt x 216.80946pt.
 
-Overfull \hbox (50.64467pt too wide) in paragraph at lines 408--409
+Overfull \hbox (50.64467pt too wide) in paragraph at lines 409--410
  [][] 
  []
 
-<Report_files/figure-latex/SpiderManPlot-1.pdf, id=42, 505.89pt x 216.81pt>
+<Report_files/figure-latex/SpiderManPlot-1.pdf, id=47, 505.89pt x 216.81pt>
 File: Report_files/figure-latex/SpiderManPlot-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/SpiderManPlot-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/SpiderManPlot-1.pdf  used on
- input line 419.
+ input line 420.
 (pdftex.def)             Requested size: 505.88875pt x 216.80946pt.
 
-Overfull \hbox (50.64467pt too wide) in paragraph at lines 419--420
+Overfull \hbox (50.64467pt too wide) in paragraph at lines 420--421
  [][] 
  []
 
 [4 <./Report_files/figure-latex/AvengersGross-1.pdf> <./Report_files/figure-lat
 ex/AvengersReview-1.pdf>]
-<Report_files/figure-latex/SpiderManReview-1.pdf, id=62, 505.89pt x 216.81pt>
+<Report_files/figure-latex/SpiderManReview-1.pdf, id=67, 505.89pt x 216.81pt>
 File: Report_files/figure-latex/SpiderManReview-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/SpiderManReview-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/SpiderManReview-1.pdf  used 
-on input line 432.
+on input line 433.
 (pdftex.def)             Requested size: 505.88875pt x 216.80946pt.
 
-Overfull \hbox (50.64467pt too wide) in paragraph at lines 432--433
+Overfull \hbox (50.64467pt too wide) in paragraph at lines 433--434
  [][] 
  []
 
 [5 <./Report_files/figure-latex/SpiderManPlot-1.pdf>]
-<Report_files/figure-latex/AllReviewsPlot-1.pdf, id=74, 505.89pt x 361.35pt>
+<Report_files/figure-latex/AllReviewsPlot-1.pdf, id=79, 505.89pt x 361.35pt>
 File: Report_files/figure-latex/AllReviewsPlot-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/AllReviewsPlot-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/AllReviewsPlot-1.pdf  used o
-n input line 441.
+n input line 442.
 (pdftex.def)             Requested size: 505.88875pt x 361.34912pt.
 
-Overfull \hbox (50.64467pt too wide) in paragraph at lines 441--442
+Overfull \hbox (50.64467pt too wide) in paragraph at lines 442--443
  [][] 
  []
 
 [6 <./Report_files/figure-latex/SpiderManReview-1.pdf> <./Report_files/figure-l
 atex/AllReviewsPlot-1.pdf>]
-<Report_files/figure-latex/AllGrossPlot-1.pdf, id=91, 505.89pt x 361.35pt>
+<Report_files/figure-latex/AllGrossPlot-1.pdf, id=96, 505.89pt x 361.35pt>
 File: Report_files/figure-latex/AllGrossPlot-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/AllGrossPlot-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/AllGrossPlot-1.pdf  used on 
-input line 452.
+input line 453.
 (pdftex.def)             Requested size: 505.88875pt x 361.34912pt.
 
-Overfull \hbox (50.64467pt too wide) in paragraph at lines 452--453
+Overfull \hbox (50.64467pt too wide) in paragraph at lines 453--454
  [][] 
  []
 
 [7 <./Report_files/figure-latex/AllGrossPlot-1.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 465.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 468.
 [8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 465.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 468.
 (Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 465.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 465.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 468.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 468.
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: 0C4B51A1236D1B4EA3EF96FE81FC543D;252.
 
 LaTeX Warning: There were undefined references.
 
@@ -1756,13 +1756,13 @@ Package biblatex Warning: Please rerun LaTeX.
 Package logreq Info: Writing requests to 'Report.run.xml'.
 \openout1 = `Report.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 465.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 468.
  ) 
 Here is how much of TeX's memory you used:
- 26755 strings out of 480934
- 444697 string characters out of 2899917
- 1105383 words of memory out of 3000000
- 41981 multiletter control sequences out of 15000+200000
+ 26763 strings out of 480934
+ 444839 string characters out of 2899917
+ 1105448 words of memory out of 3000000
+ 41987 multiletter control sequences out of 15000+200000
  633070 words of font info for 237 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,14n,90p,1197b,1429s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1781,9 +1781,9 @@ era/fvmr8a.pfb><C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/be
 ra/fvsb8a.pfb><C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/ber
 a/fvsr8a.pfb><C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/math
 design/mdbch/md-chri8t.pfb>
-Output written on Report.pdf (8 pages, 3653183 bytes).
+Output written on Report.pdf (8 pages, 3653743 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 30756 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 163 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 30764 words of extra memory for PDF output out of 35830 (max. 10000000)
 
