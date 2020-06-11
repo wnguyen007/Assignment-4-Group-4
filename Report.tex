@@ -21,7 +21,7 @@
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
 \usepackage[unicode=true]{hyperref}
 \hypersetup{
-            pdftitle={ETC5513 Assignment 4: IMDB Data Analysis},
+            pdftitle={ETC5512 Assignment 3: State of the Gender Gap},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -32,6 +32,15 @@
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
 \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 \IfFileExists{parskip.sty}{%
 \usepackage{parskip}
 }{% else
@@ -49,7 +58,7 @@
 \makeatother
 
 
-\title{ETC5513 Assignment 4: IMDB Data Analysis}
+\title{ETC5512 Assignment 3: State of the Gender Gap}
 
 %% MONASH STUFF
 
@@ -294,8 +303,240 @@
 \begin{document}
 \titlepage
 
+\hypertarget{wills-section.}{%
+\section{Will's section.}\label{wills-section.}}
+
+\begin{verbatim}
+## Rows: 81,273
+## Columns: 22
+## $ imdb_title_id         <fct> tt0000574, tt0001892, tt0002101, tt0002130, t...
+## $ title                 <fct> "The Story of the Kelly Gang", "Den sorte drÃ...
+## $ original_title        <fct> "The Story of the Kelly Gang", "Den sorte drÃ...
+## $ year                  <int> 1906, 1911, 1912, 1911, 1912, 1919, 1913, 191...
+## $ date_published        <fct> 1906-12-26, 1911-08-19, 1912-11-13, 1911-03-0...
+## $ genre                 <fct> "Biography, Crime, Drama", "Drama", "Drama, H...
+## $ duration              <int> 70, 53, 100, 68, 60, 85, 120, 120, 55, 121, 5...
+## $ country               <fct> "Australia", "Germany, Denmark", "USA", "Ital...
+## $ language              <fct> "", "", "English", "Italian", "English", "Ger...
+## $ director              <fct> "Charles Tait", "Urban Gad", "Charles L. Gask...
+## $ writer                <fct> "Charles Tait", "Urban Gad, Gebhard SchÃ¤tzle...
+## $ production_company    <fct> J. and N. Tait, Fotorama, Helen Gardner Pictu...
+## $ actors                <fct> "Elizabeth Tait, John Tait, Norman Campbell, ...
+## $ description           <fct> "True story of notorious Australian outlaw Ne...
+## $ avg_vote              <dbl> 6.1, 5.9, 5.2, 7.0, 5.7, 6.8, 6.2, 6.7, 5.5, ...
+## $ votes                 <int> 537, 171, 420, 2019, 438, 709, 241, 187, 211,...
+## $ budget                <fct> $ 2250, , $ 45000, , , , ITL 45000, ROL 40000...
+## $ usa_gross_income      <fct> , , , , , , , , , , , , , , , , , , , , , , ,...
+## $ worlwide_gross_income <fct> , , , , , , , , , , , , , , , , , , , , , , ,...
+## $ metascore             <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ reviews_from_users    <dbl> 7, 4, 24, 28, 12, 11, 6, 3, 7, 9, 9, 16, 8, 2...
+## $ reviews_from_critics  <dbl> 7, 2, 3, 14, 5, 9, 4, 1, 1, 9, 29, 7, 22, 2, ...
+\end{verbatim}
+
+\begin{table}
+
+\caption{\label{tab:metascoretable}Metascore summary}
+\centering
+\begin{tabular}[t]{l|l}
+\hline
+  &   metascore\\
+\hline
+ & Min.   :  1.00\\
+\hline
+ & 1st Qu.: 43.00\\
+\hline
+ & Median : 56.00\\
+\hline
+ & Mean   : 55.76\\
+\hline
+ & 3rd Qu.: 69.00\\
+\hline
+ & Max.   :100.00\\
+\hline
+ & NA's   :68551\\
+\hline
+\end{tabular}
+\end{table}
+
+According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
+
+Therefore, it is important to first consider the distribution of metascore within the data set. This is summarised by Table \ref{tab:metascoretable}. The most noteworthy features are that the median and mean are very close at 56 and 55.76 respectively and nearly 70,000 movies have not been assigned a metascore. Consequently, any analysis related to the metascore variable must be treated with caution as less than 20\% of the movies are represented.
+
+\begin{figure}
+\centering
+\includegraphics{Report_files/figure-latex/metascorescatterplot-1.pdf}
+\caption{\label{fig:metascorescatterplot}metascore vs time}
+\end{figure}
+
+As expected, the scatter plot depicted in Figure \ref{fig:metascorescatterplot} is not particularly informative and potentially misleading. Although the spread is increasing, one can still identify a negative correlation which suggests that the quality of movies has degraded over time. However, it is important to recognise that this dataset was taken from IMDb which means that sampling was far from random. IMDb has much more incentive to review recently released movies. Hence, when older movies are reviewed, it is likely because it is still immensely popular (i.e.~a `classic').
+
+\begin{table}
+
+\caption{\label{tab:toptwentytable}The top 20 movies arranged by metascore}
+\centering
+\begin{tabular}[t]{l|r|r}
+\hline
+title & year & metascore\\
+\hline
+The Wizard of Oz & 1939 & 100\\
+\hline
+Citizen Kane & 1941 & 100\\
+\hline
+Casablanca & 1942 & 100\\
+\hline
+Notorious & 1946 & 100\\
+\hline
+Viaggio in Italia & 1954 & 100\\
+\hline
+Rear Window & 1954 & 100\\
+\hline
+Sweet Smell of Success & 1957 & 100\\
+\hline
+Vertigo & 1958 & 100\\
+\hline
+Lawrence of Arabia & 1962 & 100\\
+\hline
+Il gattopardo & 1963 & 100\\
+\hline
+Au hasard Balthazar & 1966 & 100\\
+\hline
+Il conformista & 1970 & 100\\
+\hline
+The Godfather & 1972 & 100\\
+\hline
+Fanny och Alexander & 1982 & 100\\
+\hline
+Trois couleurs: Rouge & 1994 & 100\\
+\hline
+Boyhood & 2014 & 100\\
+\hline
+City Lights & 1931 & 99\\
+\hline
+Pinocchio & 1940 & 99\\
+\hline
+Singin' in the Rain & 1952 & 99\\
+\hline
+The Night of the Hunter & 1955 & 99\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics{Report_files/figure-latex/toptwentyhistogram-1.pdf}
+\caption{\label{fig:toptwentyhistogram}Time distribution of top twenty movies}
+\end{figure}
+
+The aforementioned `classics bias' is further confirmed by both Table \ref{tab:toptwentytable} and Figure \ref{fig:toptwentyhistogram}. This list is dominated by the most famous movies from the 1900's such as The Wizard of Oz, Citizen Kane and The Godfather which were all assigned perfect metascores. Moreover, seventeen of the twenty listed movies were released before 1975 and only one was released after 2000.
+
+Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger.
+
+\newpage
+
+\hypertarget{xue-wang-section}{%
+\section{Xue Wang section}\label{xue-wang-section}}
+
+\hypertarget{language}{%
+\subsection{Language}\label{language}}
+
+\hypertarget{the-proportion-of-top-100-movie-language}{%
+\subsubsection{The proportion of top 100 movie language}\label{the-proportion-of-top-100-movie-language}}
+
+\begin{figure}
+\centering
+\includegraphics{Report_files/figure-latex/language-1.pdf}
+\caption{\label{fig:language}The proportion of top 100 movie language}
+\end{figure}
+
+The figure \ref{fig:language} shows the proportion of the number top 100 languages. It can clearly be seen that the English movies account for almost half of all movies. French, Spanish, Japanese, Italian almost have the same proportion with the number of above 2500. It is very clear to see the situation about the distribution.
+
+\hypertarget{number-of-top-9-languages-between-2009-and-2019}{%
+\subsubsection{Number of top 9 languages between 2009 and 2019}\label{number-of-top-9-languages-between-2009-and-2019}}
+
+\begin{figure}
+\centering
+\includegraphics{Report_files/figure-latex/langyear-1.pdf}
+\caption{\label{fig:langyear}Top 9 languages between 2009 and 2019}
+\end{figure}
+
+The figure \ref{fig:langyear} shows the number of different languages movies between 2009 and 2019. It can be clearly seen that the largest number of movie languages is English, it has an increasing trend between 2009 and 2017 and will drop to 600 in 2019. The number of Korean language movies have the minimum quantity within the 9 languages, it shows a decreasing trend during the ten years. The number of French,German, Japanese and Italian, they almost maintained the level from 2009 to 2017, and then sharply decreased to 2019.
+
+\hypertarget{genres}{%
+\subsection{Genres}\label{genres}}
+
+The proportion of top 100 movie genres
+
+\begin{figure}
+\centering
+\includegraphics{Report_files/figure-latex/genres-1.pdf}
+\caption{\label{fig:genres}The proportion of top 100 movie genres}
+\end{figure}
+
+The figure \ref{fig:genres} shows the proportion of top 100 movie genres, from the figure, we can see that the drama and comedy almost occupied 30\% of total movies, followed by the horror, comedy and romance, drama and romance, thriller.etc almost have the same proportion, this picture clearly shows the proportion of different movie genres.
+
+\hypertarget{number-of-top-10-genres-of-movies-published-from-2009-to-2019}{%
+\subsubsection{Number of top 10 genres of movies published from 2009 to 2019}\label{number-of-top-10-genres-of-movies-published-from-2009-to-2019}}
+
+\begin{figure}
+\centering
+\includegraphics{Report_files/figure-latex/genresyear-1.pdf}
+\caption{\label{fig:genresyear}Number of top 10 types of movies published from 2009 to 2019}
+\end{figure}
+
+The figure \ref{fig:genresyear} graph shows the change in the number of different movie genres in ten years, from this figure, it can be seen that,the number of dramas and comedies almost exceeds 100 every year, and dramas almost reach 500 every year. When it comes to the line chart, the number of almost all movie genres peaked in 2017 and then fell to 2019. This is because the movie industry returns to the content ontology and enters the transition period from quantity to quality.
+
+\hypertarget{the-largest-number-of-movies-genres-in-each-country}{%
+\subsubsection{The largest number of movies genres in each country}\label{the-largest-number-of-movies-genres-in-each-country}}
+
+\begin{table}
+
+\caption{\label{tab:maxgenres} The largest number of movies genres in each country}
+\centering
+\begin{tabular}[t]{llr}
+\toprule
+country & genre & n\\
+\midrule
+USA & Drama & 1252\\
+India & Drama & 436\\
+France & Drama & 334\\
+Italy & Comedy & 295\\
+Japan & Drama & 267\\
+\addlinespace
+Canada & Drama & 217\\
+Germany & Drama & 215\\
+UK & Drama & 171\\
+Turkey & Comedy & 166\\
+Spain & Drama & 163\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table \ref{tab:maxgenres} show the largest number of movies genres in each country in the 21st century, according to this table, we can see the the largest number of movies in many countries is drama, According Table \ref{tab:pretdrame} , it shows the drama has the largest proportion with 58.84\%, However, the second place comedy only reached 8\%.
+
+\begin{table}
+
+\caption{\label{tab:pretdrame} The largest number of movies genres in each country}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+genre & total & total\_movies & prop\_genre\\
+\midrule
+Drama & 6534 & 11103 & 0.5884896\\
+Comedy & 914 & 11103 & 0.0823201\\
+Comedy, Drama & 290 & 11103 & 0.0261191\\
+Drama, Romance & 239 & 11103 & 0.0215257\\
+Comedy, Drama, Romance & 121 & 11103 & 0.0108980\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\hypertarget{rahuls-section.}{%
+\section{Rahul's Section.}\label{rahuls-section.}}
+
 \hypertarget{movie-grosses-and-popularity-analysis}{%
-\section{Movie Grosses and Popularity Analysis}\label{movie-grosses-and-popularity-analysis}}
+\subsection{Movie Grosses and Popularity Analysis}\label{movie-grosses-and-popularity-analysis}}
 
 \begin{itemize}
 \item
@@ -339,7 +580,7 @@
   The above chunk shows the column names of the raw dataset. The columns are selected based on the research questions to be answered. The column names are cleaned by renaming the columns clearly and prepared to be useful for analysis.
 \end{itemize}
 
-Tidyverse (\textcite{tidyverse}) is used to clean the data and kableExtra (\textcite{kable}) is used to display tables.
+Tidyverse (\textcite{tidyverse}) is used to clean the data and kableExtra (\textcite{kableExtra}) is used to display tables.
 
 \begin{table}
 
@@ -457,11 +698,200 @@ The figure \ref{fig:AllReviewsPlot} looks shabby when you first look at it but i
 \caption{Some all-time Popular Movies and their Gross}\label{fig:AllGrossPlot}
 \end{figure}
 
-The figure \ref{fig:AllGrossPlot} shows the budget and gross of the most popular movies from over a century. We can compare the production cost, which is the budget, and the gross to ensure that it was most talked about because it was good. This plot also has information about the decade it was released in. This was to ensure there was no bias between the movies since currency value is always changing. The values are discrete and shows how much was spent and how much was grossed for that time. The gradient is gven to year using Viridis (\textcite{viridis}).
+The figure \ref{fig:AllGrossPlot} shows the budget and gross of the most popular movies from over a century. We can compare the production cost, which is the budget, and the gross to ensure that it was most talked about because it was good. This plot also has information about the decade it was released in. This was to ensure there was no bias between the movies since currency value is always changing. The values are discrete and shows how much was spent and how much was grossed for that time. The gradient is gven to year using Viridis.
 
-\textbf{Conclusion}
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
 
 In conclusion, we can see a general trend that a movie that is most talked about by the users or fans has grossed the most amount of money compared to lesser popular movies. The number of reviews by users can generally be used to predict if it was a box office hit.
+
+\newpage
+
+\hypertarget{aryans-section.}{%
+\section{Aryan's Section.}\label{aryans-section.}}
+
+\hypertarget{director-analysis}{%
+\subsection{Director Analysis}\label{director-analysis}}
+
+\hypertarget{most-successful-director}{%
+\subsubsection{Most Successful Director}\label{most-successful-director}}
+
+Lets take a look at the some of the most successful directors from our dataset. Now, there are limitless ways to measure success but for our test, we're only looking at people with at least 4 movies under their belt and a Metascore upwards of 80. And conveniently, we get only 10 names.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|r|r}
+\hline
+Director & Total Movies & Metascore\\
+\hline
+Damien Chazelle & 4 & 87\\
+\hline
+Patrick Wang & 4 & 86\\
+\hline
+Paul Thomas Anderson & 8 & 84\\
+\hline
+Spike Jonze & 4 & 84\\
+\hline
+Steve McQueen & 4 & 84\\
+\hline
+Mike Leigh & 13 & 82\\
+\hline
+Alfonso CuarÃ³n & 8 & 81\\
+\hline
+Nuri Bilge Ceylan & 8 & 81\\
+\hline
+Bong Joon Ho & 7 & 81\\
+\hline
+Andrey Zvyagintsev & 5 & 81\\
+\hline
+\end{tabular}
+\end{table}
+
+We get some interesting results, as on one hand there is Mike Leigh with as much as 13 movies but a lower average metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average metascore of 87 and 86 respectively.
+
+\includegraphics{Report_files/figure-latex/2-1.pdf}
+
+\hypertarget{top-grossing-movie}{%
+\subsection{Top Grossing Movie}\label{top-grossing-movie}}
+
+In this section, we'll look at the top grossing movie of the most successful directors that we established from Table @ref(tab:dir\_tab).
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|l|l}
+\hline
+Director & Highest Grossing Movie & Total Revenue\\
+\hline
+Alfonso CuarÃ³n & Harry Potter and the Prisoner of Azkaban & \$796,093,802\\
+\hline
+Damien Chazelle & La La Land & \$446,092,357\\
+\hline
+Steve McQueen & 12 Years a Slave & \$187,733,202\\
+\hline
+Bong Joon Ho & Gisaengchung & \$109,012,467\\
+\hline
+Spike Jonze & Where the Wild Things Are & \$100,086,793\\
+\hline
+Paul Thomas Anderson & There Will Be Blood & \$76,181,545\\
+\hline
+Mike Leigh & Mr. Turner & \$22,179,785\\
+\hline
+Andrey Zvyagintsev & Vozvrashchenie & \$8,482,993\\
+\hline
+Nuri Bilge Ceylan & Kis Uykusu & \$4,018,705\\
+\hline
+Patrick Wang & In the Family & \$101,934\\
+\hline
+\end{tabular}
+\end{table}
+
+It can be observed that the \emph{Alfonso Cuarón} is the director of the top grossing movie \emph{Harry Potter and the Prisoner of Azkaban} which made \$796,093,802 worldwide. Followed by, \emph{Damien Chazelle}, the director of \emph{La La Land} grossing \$446,092,35. Suprisingly, \emph{Patrick Wang}, with an average metascore of 86 and a total of 4 movies made the least at just \$101,934.
+
+\begin{figure}
+
+{\centering \includegraphics{Report_files/figure-latex/4-1} 
+
+}
+
+\caption{Top Grossing Movies}\label{fig:4}
+\end{figure}
+
+\hypertarget{movie-length-and-language-analysis}{%
+\subsection{Movie Length and Language Analysis}\label{movie-length-and-language-analysis}}
+
+\hypertarget{lets-look-at-some-of-the-common-movie-languages.}{%
+\subsubsection{Let's look at some of the common movie languages.}\label{lets-look-at-some-of-the-common-movie-languages.}}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|r}
+\hline
+Language & Number of Movies\\
+\hline
+507 & 34519\\
+\hline
+multi-lingual & 15188\\
+\hline
+1854 & 3777\\
+\hline
+3770 & 2640\\
+\hline
+2875 & 2605\\
+\hline
+2743 & 2565\\
+\hline
+2501 & 1930\\
+\hline
+2206 & 1702\\
+\hline
+3541 & 1235\\
+\hline
+4133 & 1229\\
+\hline
+\end{tabular}
+\end{table}
+
+From the above table, it is quite clear that most movies are released in either only \emph{English} or in \emph{multi-lingual} format.
+
+\hypertarget{is-there-a-pattern-in-movie-length-for-various-languages}{%
+\subsubsection{Is there a pattern in Movie length for various languages?}\label{is-there-a-pattern-in-movie-length-for-various-languages}}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|r}
+\hline
+Language & Avg. Movie Duration\\
+\hline
+1854 & 99.38734\\
+\hline
+2206 & 96.43831\\
+\hline
+2501 & 140.40466\\
+\hline
+2743 & 98.94191\\
+\hline
+2875 & 102.96161\\
+\hline
+3541 & 99.78219\\
+\hline
+3770 & 97.35833\\
+\hline
+4133 & 96.79170\\
+\hline
+507 & 93.50190\\
+\hline
+multi-lingual & 106.46787\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{center}\includegraphics{Report_files/figure-latex/10-1} \end{center}
+
+From the plot above, we can infer that \emph{Hindi} movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, \emph{English} movies are usually the shortest at just 93 minutes.
+
+\hypertarget{conclusion-1}{%
+\subsection{Conclusion}\label{conclusion-1}}
+
+For Director analysis, it is clear from Figure 1 and Figure 2 that there is no one single way to measure success and that all directors in the list are doing very good in their own ways.
+
+And from the Movie length analysis, we can infer that Hindi Movies are usually significantly longer than any other kind of movies. Also, english movies are among the shortest. We also concluded that movie language has an impact on movie length.
+
+\hypertarget{citations}{%
+\section{Citations}\label{citations}}
+
+tidyverse \textcite{tidyverse}
+
+dplyr \textcite{dplyr}
+
+kableExtra \textcite{kableExtra}
+
+bookdown \textcite{bookdown}
+
+treemap \textcite{treemap}
+
+scales \textcite{scales}
+
+viridis \textcite{viridis}
 
 \printbibliography
 

@@ -1,26 +1,16 @@
 ---
-title: "ETC5513 Assignment 4: IMDB Data Analysis"
+title: "ETC5512 Assignment 3: State of the Gender Gap"
 author:
-- familyname: 
-  othernames: 
-  address: Monash University
-  correspondingauthor: true
-  qualifications:  Master of
-- familyname: Wang
-  othernames: Xue
-  address: Monash University
-  qualification: Master of Business
-  correspondingauthor: true
 - familyname: Mysore Venkatesh
   othernames: Rahul Bharadwaj
-  address: Monash University
+  title: Mr
   qualifications: Master of Business Analytics
-- familyname: Jain
-  othernames: Aryan
-  address: Monash University
-  qualifications: Master of Business Analytics
+  email: rmys0001@student.monash.edu
   correspondingauthor: true
-department: Our consultancy \newline add names &\newline add names
+department: Department of\newline Econometrics &\newline Business Statistics
+organization: Monash University
+bibliography: references.bib
+biblio-style: authoryear-comp
 linestretch: 1.5
 output:
   MonashEBSTemplates::report:
@@ -31,7 +21,7 @@ output:
     toc: false
 ---
 
-```{r libraries, message = FALSE}
+```{r libraries, message = FALSE, echo=FALSE}
 library(tidyverse)
 library(dplyr)
 library(kableExtra)
@@ -42,17 +32,16 @@ library(viridis)
 library(scales)
 ```
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, cache=TRUE, message=FALSE, warning = FALSE)
 ```
 
+# Will's section.
+
 ```{r Loading dataset,echo = FALSE}
-dat = read.csv("Data/IMDb movies.csv")
+dat <- read.csv(here::here("Data/IMDb movies.csv"))
 glimpse(dat)
 ```
-
-# Will's section.
 
 ```{r metascoretable}
 dat %>% 
@@ -104,15 +93,14 @@ The aforementioned 'classics bias' is further confirmed by both Table \@ref(tab:
 
 Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger. 
 
-
+\newpage
 # Xue Wang section
 
 ## Language
  
 ### The proportion of top 100 movie language
 
-
-```{r language,echo=FALSE,fig.cap="The proportion of top 100 movie language",warning=FALSE}
+```{r language, echo=FALSE, fig.cap = "The proportion of top 100 movie language", warning=FALSE, fig.height=6, fig.pos="H"}
 top100 <- head(names(sort(table(dat$language),decreasing = TRUE)),100) 
 most_language <- dat %>% 
     filter(language %in% top100) %>% 
@@ -120,19 +108,17 @@ most_language <- dat %>%
     summarize(total = n()) %>%
     arrange(-total) %>%
     treemap(publisher_tm, index = "language",
-                  vSize = "total",
-                 fontsize.labels = 12,
-                  palette = "YlOrRd",
-            title = "The proportion of top 100 movie language",
-                       fontsize.title = 20)
+            vSize = "total",
+            fontsize.labels = 12,
+            palette = "YlOrRd",
+            title = "The proportion of top 100 movie language", fontsize.title = 20)
 ```
 
- 
-The figure \@ref(fig:language)shows the proportion of the number top 100 languages. It can clearly be seen that the English movies account for almost half of all movies. French, Spanish, Japanese, Italian almost have the same proportion with the number of above 2500. It is very clear to see the situation about the distribution. 
+The figure \@ref(fig:language) shows the proportion of the number top 100 languages. It can clearly be seen that the English movies account for almost half of all movies. French, Spanish, Japanese, Italian almost have the same proportion with the number of above 2500. It is very clear to see the situation about the distribution. 
 
 ### Number of top 9 languages between 2009 and 2019
 
-```{r language_year,echo = FALSE,fig.cap="Number of top 9 languages between 2009 and 2019"}
+```{r langyear, echo = FALSE, fig.cap = "Top 9 languages between 2009 and 2019", warning=FALSE, fig.height=6, fig.pos="H"}
 
 top9 <- dat %>% 
   filter(year %in% c(2009:2019)) 
@@ -155,12 +141,13 @@ language_9 %>%
   ylab("Number of top 9 languages between 2009 and 2019")
 ```
 
-figure \@ref(fig:language_year) shows the number of different languages movies between 2009 and 2019. It can be clearly seen that the largest number of movie languages is English, it has an increasing trend between 2009 and 2017 and will drop to 600 in 2019. The number of  Korean language movies have the minimum quantity within the 9 languages, it shows a decreasing trend during the ten years. The number of French,German, Japanese and Italian, they almost maintained the level from 2009 to 2017, and then sharply decreased to 2019.
-##  Genres 
+The figure \@ref(fig:langyear) shows the number of different languages movies between 2009 and 2019. It can be clearly seen that the largest number of movie languages is English, it has an increasing trend between 2009 and 2017 and will drop to 600 in 2019. The number of  Korean language movies have the minimum quantity within the 9 languages, it shows a decreasing trend during the ten years. The number of French,German, Japanese and Italian, they almost maintained the level from 2009 to 2017, and then sharply decreased to 2019.
 
-### The proportion of top 100 movie genres
+## Genres 
 
-```{r genres,echo = FALSE,fig.cap="The proportion of top 100 movie genres"}
+The proportion of top 100 movie genres
+
+```{r genres, echo = FALSE, fig.cap = "The proportion of top 100 movie genres", fig.height=6, fig.pos="H"}
 top100_genre<- head(names(sort(table(dat$genre),decreasing = TRUE)),100) 
 most_genre <- dat %>% 
     filter(genre %in% top100_genre) %>% 
@@ -176,11 +163,11 @@ most_genre <- dat %>%
                        fontsize.title = 20)
 ```
 
-figure \@ref(fig:genres) shows the  proportion of top 100 movie genres, from the figure, we can see that the drama and comedy almost occupied 30% of total movies, followed by the horror, comedy and romance, drama and romance, thriller.etc almost have the same proportion, this picture clearly shows the proportion of different movie genres.
+The figure \@ref(fig:genres) shows the  proportion of top 100 movie genres, from the figure, we can see that the drama and comedy almost occupied 30% of total movies, followed by the horror, comedy and romance, drama and romance, thriller.etc almost have the same proportion, this picture clearly shows the proportion of different movie genres.
 
 ### Number of top 10 genres of movies published from 2009 to 2019
 
-```{r genres_year,echo = FALSE,fig.cap="Number of top 10 types of movies published from 2009 to 2019"}
+```{r genresyear, echo = FALSE, fig.cap = "Number of top 10 types of movies published from 2009 to 2019", fig.height= 5, fig.pos="H"}
 top10_genres <- dat %>% 
   filter(year %in% c(2009:2019)) 
 top_10_genres <- head(names(sort(table(top10_genres$genre),decreasing = TRUE)),10) 
@@ -203,11 +190,11 @@ ggplot(dat_genre, aes(x = year, y = n))+
   theme(axis.text.x = element_text(angle=90, hjust=1, vjust=1)) 
 ```
 
-figure \@ref(fig:genres_year) graph shows the change in the number of different movie genres in ten years, from this figure, it can be seen that,the number of dramas and comedies almost exceeds 100 every year, and dramas almost reach 500 every year. When it comes to the line chart, the number of almost all movie genres peaked in 2017 and then fell to 2019. This is because the  movie industry returns to the content ontology and enters the transition period from quantity to quality.
+The figure \@ref(fig:genresyear) graph shows the change in the number of different movie genres in ten years, from this figure, it can be seen that,the number of dramas and comedies almost exceeds 100 every year, and dramas almost reach 500 every year. When it comes to the line chart, the number of almost all movie genres peaked in 2017 and then fell to 2019. This is because the  movie industry returns to the content ontology and enters the transition period from quantity to quality.
 
-## The largest number of movies genres in each country
+### The largest number of movies genres in each country
 
-```{r max_genres,echo = FALSE}
+```{r maxgenres, echo = FALSE, fig.height=6, fig.pos="H"}
 dat_genre_country <- dat %>% 
   select (country, genre,year) %>%  
   filter(year %in% c(2000:2020)) %>% 
@@ -225,8 +212,9 @@ max_dat_genre_country[1:10,],booktabs = TRUE, caption = ' The largest number of 
 
 ```
 
+Table \@ref(tab:maxgenres) show the largest number of movies genres in each country in the 21st century, according to this table, we can see the the largest number of movies in many countries is drama, According Table \@ref(tab:pretdrame) , it shows the drama has the largest proportion with 58.84%, However, the second place comedy only reached 8%.
 
-```{r pret_drame, echo = FALSE}
+```{r pretdrame, echo = FALSE, fig.height=6, fig.pos="H"}
 
   drama_genre_country <- max_dat_genre_country%>% 
   group_by(genre) %>%  
@@ -241,8 +229,7 @@ kable(
 drama_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
 ```
 
-Table \@ref(tab:max_genres) show the largest number of movies genres in each country in the 21st century, according to this table, we can see the the largest number of movies in many countries is drama, According Table \@ref(tab:pret_drame) , it shows the drama has the largest proportion with 58.84%, However, the second place comedy only reached 8%.
-
+\newpage
 # Rahul's Section.
 
 ## Movie Grosses and Popularity Analysis
@@ -364,21 +351,22 @@ grossdata %>% select(Title, Year, Budget, USA_Gross) %>%
   scale_color_viridis(begin = 1, end = 0)
 ```
 
-The figure \@ref(fig:AllGrossPlot) shows the budget and gross of the most popular movies from over a century. We can compare the production cost, which is the budget, and the gross to ensure that it was most talked about because it was good. This plot also has information about the decade it was released in. This was to ensure there was no bias between the movies since currency value is always changing. The values are discrete and shows how much was spent and how much was grossed for that time. The gradient is gven to year using Viridis (@viridis).
+The figure \@ref(fig:AllGrossPlot) shows the budget and gross of the most popular movies from over a century. We can compare the production cost, which is the budget, and the gross to ensure that it was most talked about because it was good. This plot also has information about the decade it was released in. This was to ensure there was no bias between the movies since currency value is always changing. The values are discrete and shows how much was spent and how much was grossed for that time. The gradient is gven to year using Viridis.
 
-**Conclusion**
+## Conclusion
 
 In conclusion, we can see a general trend that a movie that is most talked about by the users or fans has grossed the most amount of money compared to lesser popular movies. The number of reviews by users can generally be used to predict if it was a box office hit.
 
+\newpage
 # Aryan's Section.
 
 ## Director Analysis
 
-#### Most Successful Director
+### Most Successful Director
 
 Lets take a look at the some of the most successful directors from our dataset. Now, there are limitless ways to measure success but for our test, we're only looking at people with at least 4 movies under their belt and a Metascore upwards of 80. And conveniently, we get only 10 names.
 
-```{r}
+```{r 1}
 directors <- dat %>%
   group_by(director) %>%
   summarise(movies = n(),
@@ -388,7 +376,7 @@ directors <- dat %>%
   arrange(-metascore, -movies)
 ```
 
-```{r dir_tab}
+```{r dir_tab, fig.cap="Top Grossing Movies"}
 directors %>%
 kable(col.names = c("Director",
                       "Total Movies",
@@ -398,7 +386,7 @@ kable(col.names = c("Director",
 
 We get some interesting results, as on one hand there is Mike Leigh with as much as 13 movies but a lower average metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average metascore of 87 and 86 respectively. 
 
-```{r}
+```{r 2}
 directors %>%
   ggplot(aes(x = director, y = movies, fill = metascore)) +
   geom_col() +
@@ -407,11 +395,11 @@ directors %>%
   ylab("No. of Movies")
 ```
 
-#### Top Grossing Movie
+## Top Grossing Movie
 
 In this section, we'll look at the top grossing movie of the most successful directors that we established from Table \@ref(tab:dir_tab).
 
-```{r}
+```{r 3}
 director_movie <- dat %>%
   right_join(directors, by = c("director" = "director")) %>%
   select(director, title, worlwide_gross_income)
@@ -435,7 +423,7 @@ director_movie_final %>%
 
 It can be observed that the *Alfonso Cuarón* is the director of the top grossing movie *Harry Potter and the Prisoner of Azkaban* which made \$796,093,802 worldwide. Followed by, *Damien Chazelle*, the director of *La La Land* grossing \$446,092,35. Suprisingly, *Patrick Wang*, with an average metascore of 86 and a total of 4 movies made the least at just \$101,934.
 
-```{r fig.align="center"}
+```{r 4, fig.align="center", fig.cap="Top Grossing Movies"}
 director_movie_final %>%
   mutate(director = fct_reorder(director, worlwide_gross_income)) %>%
   ggplot(aes(y = worlwide_gross_income, x = director, fill = title)) +
@@ -448,22 +436,22 @@ director_movie_final %>%
 
 ## Movie Length and Language Analysis
 
-```{r}
+```{r 5}
 dat1 <- dat
 dat1$language <- ifelse(str_detect(dat1$language, ","), "multi-lingual", dat1$language)
 dat1$budget = as.numeric(gsub("[\\$,]", "", dat1$budget))
 ```
 
-Let's look at some of the common movie languages.
+### Let's look at some of the common movie languages.
 
-```{r}
+```{r 6}
 dat2 <- dat1 %>%
   count(language) %>%
   arrange(-n) %>%
   head(10)
 ```
 
-```{r}
+```{r 7}
 dat2 %>%
   kable(col.names = c("Language", "Number of Movies")) %>%
   kable_styling()
@@ -471,22 +459,22 @@ dat2 %>%
 
 From the above table, it is quite clear that most movies are released in either only *English* or in *multi-lingual* format.
 
-```{r}
+```{r 8}
 dat3 <- dat1 %>%
   filter(language %in% dat2$language) %>%
   group_by(language) %>%
   summarise(duration = mean(duration, na.rm = TRUE))
 ```
 
-#### Is there a pattern in Movie length for various languages?
+### Is there a pattern in Movie length for various languages?
 
-```{r}
+```{r 9}
 dat3 %>%
   kable(col.names = c("Language", "Avg. Movie Duration")) %>%
   kable_styling()
 ```
 
-```{r fig.align="center"}
+```{r 10, fig.align="center"}
 dat3 %>%
   ggplot(aes(x = language, y = duration, fill = language)) +
   geom_col() +
@@ -503,7 +491,7 @@ For Director analysis, it is clear from Figure 1 and Figure 2 that there is no o
 
 And from the Movie length analysis, we can infer that Hindi Movies are usually significantly longer than any other kind of movies. Also, english movies are among the shortest. We also concluded that movie language has an impact on movie length.
 
-## Citations
+# Citations
 
 tidyverse @tidyverse
 
@@ -512,3 +500,9 @@ dplyr @dplyr
 kableExtra @kableExtra
 
 bookdown @bookdown
+
+treemap @treemap
+
+scales @scales
+
+viridis @viridis
