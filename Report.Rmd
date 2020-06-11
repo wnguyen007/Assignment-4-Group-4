@@ -1,21 +1,34 @@
 ---
 title: "ETC5513 Assignment 4: IMDB Data Analysis"
 author:
-- familyname: Nguyen
-  othernames: William
+- familyname: 
+  othernames: 
   address: Monash University
-  email: wngu0007@student.monash.edu
   correspondingauthor: true
-  qualifications: Master of Actuarial Science
+  qualifications:  Master of
+- familyname: Wang
+  othernames: Xue
+  address: Monash University
+  qualification: Master of Business
+  correspondingauthor: true
+- familyname: Mysore Venkatesh
+  othernames: Rahul Bharadwaj
+  address: Monash University
+  qualifications: Master of Business Analytics
+- familyname: Jain
+  othernames: Aryan
+  address: Monash University
+  qualifications: Master of Business Analytics
+  correspondingauthor: true
 department: Our consultancy \newline add names &\newline add names
 linestretch: 1.5
 output:
-  bookdown::html_document2:
+  MonashEBSTemplates::report:
     fig_caption: yes
-    fig_height: 5
-    fig_width: 8
+    keep_tex: yes
     number_sections: yes
-    toc: true
+    citation_package: biblatex
+    toc: false
 ---
 
 ```{r libraries, message = FALSE}
