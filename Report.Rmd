@@ -25,10 +25,9 @@ library(kableExtra)
 library(bookdown)
 library(treemap)
 library(knitr)
+library(viridis)
+library(scales)
 ```
-
-
-
 
 
 ```{r setup, include=FALSE}
@@ -39,6 +38,8 @@ knitr::opts_chunk$set(echo = FALSE, cache=TRUE, message=FALSE, warning = FALSE)
 dat = read.csv("Data/IMDb movies.csv")
 glimpse(dat)
 ```
+
+# Will's section.
 
 ```{r metascoretable}
 dat %>% 
@@ -91,11 +92,11 @@ The aforementioned 'classics bias' is further confirmed by both Table \@ref(tab:
 Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger. 
 
 
+# Xue Wang section
 
-
-# Language
+## Language
  
-## The proportion of top 100 movie language
+### The proportion of top 100 movie language
 
 
 ```{r language,echo=FALSE,fig.cap="The proportion of top 100 movie language",warning=FALSE}
@@ -116,7 +117,7 @@ most_language <- dat %>%
  
 The figure \@ref(fig:language)shows the proportion of the number top 100 languages. It can clearly be seen that the English movies account for almost half of all movies. French, Spanish, Japanese, Italian almost have the same proportion with the number of above 2500. It is very clear to see the situation about the distribution. 
 
-## Number of top 9 languages between 2009 and 2019
+### Number of top 9 languages between 2009 and 2019
 
 ```{r language_year,echo = FALSE,fig.cap="Number of top 9 languages between 2009 and 2019"}
 
@@ -142,9 +143,9 @@ language_9 %>%
 ```
 
 figure \@ref(fig:language_year) shows the number of different languages movies between 2009 and 2019. It can be clearly seen that the largest number of movie languages is English, it has an increasing trend between 2009 and 2017 and will drop to 600 in 2019. The number of  Korean language movies have the minimum quantity within the 9 languages, it shows a decreasing trend during the ten years. The number of French,German, Japanese and Italian, they almost maintained the level from 2009 to 2017, and then sharply decreased to 2019.
-#  Genres 
+##  Genres 
 
-## The proportion of top 100 movie genres
+### The proportion of top 100 movie genres
 
 ```{r genres,echo = FALSE,fig.cap="The proportion of top 100 movie genres"}
 top100_genre<- head(names(sort(table(dat$genre),decreasing = TRUE)),100) 
@@ -164,7 +165,7 @@ most_genre <- dat %>%
 
 figure \@ref(fig:genres) shows the  proportion of top 100 movie genres, from the figure, we can see that the drama and comedy almost occupied 30% of total movies, followed by the horror, comedy and romance, drama and romance, thriller.etc almost have the same proportion, this picture clearly shows the proportion of different movie genres.
 
-## Number of top 10 genres of movies published from 2009 to 2019
+### Number of top 10 genres of movies published from 2009 to 2019
 
 ```{r genres_year,echo = FALSE,fig.cap="Number of top 10 types of movies published from 2009 to 2019"}
 top10_genres <- dat %>% 
@@ -191,7 +192,7 @@ ggplot(dat_genre, aes(x = year, y = n))+
 
 figure \@ref(fig:genres_year) graph shows the change in the number of different movie genres in ten years, from this figure, it can be seen that,the number of dramas and comedies almost exceeds 100 every year, and dramas almost reach 500 every year. When it comes to the line chart, the number of almost all movie genres peaked in 2017 and then fell to 2019. This is because the  movie industry returns to the content ontology and enters the transition period from quantity to quality.
 
-# The largest number of movies genres in each country
+## The largest number of movies genres in each country
 
 ```{r max_genres,echo = FALSE}
 dat_genre_country <- dat %>% 
@@ -228,26 +229,10 @@ drama_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of mov
 ```
 
 Table \@ref(tab:max_genres) show the largest number of movies genres in each country in the 21st century, according to this table, we can see the the largest number of movies in many countries is drama, According Table \@ref(tab:pret_drame) , it shows the drama has the largest proportion with 58.84%, However, the second place comedy only reached 8%.
- 
-# Citations
 
-tidyverse @tidyverse
+# Rahul's Section.
 
-dplyr @dplyr
-
-kableExtra @kableExtra
-
-bookdown @bookdown
-
-
-```{r Libraries, message=FALSE, warning=FALSE, echo=FALSE}
-#loading necessary libraries
-library(tidyverse)
-library(kableExtra)
-library(viridis)
-```
-
-# Movie Grosses and Popularity Analysis
+## Movie Grosses and Popularity Analysis
 
 - What is the Budget and USA Gross for Avenger and Spider-Man movie franchises?
 
@@ -275,7 +260,7 @@ grossdata <- cleandata %>%  filter((!Budget == "" | NA), (!USA_Gross == "" | NA)
 reviewdata <- cleandata %>%  filter((!User_Reviews == "" | NA), (!Critic_Reviews == "" | NA))
 ```
 
-Tidyverse (@tidyverse) is used to clean the data and kableExtra (@kable) is used to display tables.
+Tidyverse (@tidyverse) is used to clean the data and kableExtra (@kableExtra) is used to display tables.
 
 ```{r GrossTable, fig.pos="H", message=FALSE, warning=FALSE, echo=FALSE}
 head(grossdata, 10) %>% select(Title, Budget, USA_Gross) %>% kable("latex", booktabs = T, caption = "Sample Gross Data Table") %>% 
@@ -372,19 +357,7 @@ The figure \@ref(fig:AllGrossPlot) shows the budget and gross of the most popula
 
 In conclusion, we can see a general trend that a movie that is most talked about by the users or fans has grossed the most amount of money compared to lesser popular movies. The number of reviews by users can generally be used to predict if it was a box office hit.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, eval = TRUE, message = FALSE, warning = FALSE)
-```
-
-```{r Loading dataset}
-dat = read.csv("Data/IMDb movies.csv")
-```
-
-```{r}
-library(tidyverse)
-library(scales)
-library(kableExtra)
-```
+# Aryan's Section.
 
 ## Director Analysis
 
@@ -516,3 +489,13 @@ From the plot above, we can infer that *Hindi* movies are usually much longer th
 For Director analysis, it is clear from Figure 1 and Figure 2 that there is no one single way to measure success and that all directors in the list are doing very good in their own ways.
 
 And from the Movie length analysis, we can infer that Hindi Movies are usually significantly longer than any other kind of movies. Also, english movies are among the shortest. We also concluded that movie language has an impact on movie length.
+
+## Citations
+
+tidyverse @tidyverse
+
+dplyr @dplyr
+
+kableExtra @kableExtra
+
+bookdown @bookdown
