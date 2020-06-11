@@ -1,7 +1,9 @@
 ---
 title: "5513 - Assignment 4"
 author: "Aryan Jain"
-output: html_document
+output: 
+  bookdown::pdf_document2
+keep_md: True
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, eval = TRUE, message = FALSE, warning = FALSE)
@@ -21,7 +23,7 @@ library(kableExtra)
 
 #### Most Successful Director
 
-Lets take a look at the some of most successful directors from our dataset. Now, there are limitless ways to measure success but for our test, we're only looking at people with at least 4 movies under their belt and a Metascore upwards of 80. And conveniently, we get only 10 names.
+Lets take a look at the some of the most successful directors from our dataset. Now, there are limitless ways to measure success but for our test, we're only looking at people with at least 4 movies under their belt and a Metascore upwards of 80. And conveniently, we get only 10 names.
 
 ```{r}
 directors <- dat %>%
@@ -37,8 +39,7 @@ directors <- dat %>%
 directors %>%
 kable(col.names = c("Director",
                       "Total Movies",
-                      "Metascore"),
-      caption = "Successful Directors") %>%
+                      "Metascore")) %>%
   kable_styling()
 ```
 
@@ -79,15 +80,15 @@ director_movie_final %>%
   kable_styling()
 ```
 
-It can be observed that the Alfonso Cuarón is the director of the top grossing movie **Harry Potter and the Prisoner of Azkaban** which made \$796,093,802 worldwide. Followed by, Damien Chazelle, the director of **La La Land** grossing \$446,092,35. Suprisingly, Patrick Wang, with an average metascore of 86 and a total of 4 movies made the least at just $101,934.
+It can be observed that the *Alfonso Cuarón* is the director of the top grossing movie *Harry Potter and the Prisoner of Azkaban* which made \$796,093,802 worldwide. Followed by, *Damien Chazelle*, the director of *La La Land* grossing \$446,092,35. Suprisingly, *Patrick Wang*, with an average metascore of 86 and a total of 4 movies made the least at just \$101,934.
 
-```{r}
+```{r fig.align="center"}
 director_movie_final %>%
   mutate(director = fct_reorder(director, worlwide_gross_income)) %>%
-  ggplot(aes(y = director, x = worlwide_gross_income, fill = title)) +
+  ggplot(aes(y = worlwide_gross_income, x = director, fill = title)) +
   geom_col() +
-  theme(legend.position = "top", legend.title = element_blank()) +
-  scale_x_continuous(label = comma) +
+  theme(legend.position = "right", legend.title = element_blank(), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_y_continuous(label = comma) +
   xlab("") +
   ylab("")
 ```
@@ -115,7 +116,7 @@ dat2 %>%
   kable_styling()
 ```
 
-From the above table, it is quite clear that most movies are released in either only english or in multi-lingual format.
+From the above table, it is quite clear that most movies are released in either only *English* or in *multi-lingual* format.
 
 ```{r}
 dat3 <- dat1 %>%
@@ -124,7 +125,7 @@ dat3 <- dat1 %>%
   summarise(duration = mean(duration, na.rm = TRUE))
 ```
 
-#### Is there a pattern in Movie length for various languages.
+#### Is there a pattern in Movie length for various languages?
 
 ```{r}
 dat3 %>%
@@ -132,7 +133,7 @@ dat3 %>%
   kable_styling()
 ```
 
-```{r}
+```{r fig.align="center"}
 dat3 %>%
   ggplot(aes(x = language, y = duration, fill = language)) +
   geom_col() +
@@ -141,4 +142,10 @@ dat3 %>%
   theme(legend.position = "bottom", axis.text.x=element_blank())
 ```
 
-From the plot above, we can infer that Hindi movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, english movies are usually the shortest at just 93 minutes.
+From the plot above, we can infer that *Hindi* movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, *English* movies are usually the shortest at just 93 minutes.
+
+## Conclusion
+
+For Director analysis, it is clear from Figure 1 and Figure 2 that there is no one single way to measure success and that all directors in the list are doing very good in their own ways.
+
+And from the Movie length analysis, we can infer that Hindi Movies are usually significantly longer than any other kind of movies. Also, english movies are among the shortest. We also concluded that movie language has an impact on movie length.
