@@ -1,6 +1,5 @@
 ---
-
-title: "Assignment 4 - Group 4"
+title: "ETC5513 Assignment 4: IMDB Data Analysis"
 author:
 - familyname: Nguyen
   othernames: William
@@ -241,3 +240,134 @@ kableExtra @kableExtra
 bookdown @bookdown
 
 
+```{r Libraries, message=FALSE, warning=FALSE, echo=FALSE}
+#loading necessary libraries
+library(tidyverse)
+library(kableExtra)
+library(viridis)
+```
+
+# Movie Grosses and Popularity Analysis
+
+- What is the Budget and USA Gross for Avenger and Spider-Man movie franchises?
+
+- What is the Number of user reviews and critic reviews for the same, implying their popularity?
+
+- What is the gross of the most popular movies of all-time?
+
+```{r LoadingDataset, message=FALSE, warning=FALSE, echo=FALSE}
+#reading data from the csv file in "Data" folder
+data <- read.csv(here::here("Data/IMDb movies.csv"))
+#sample of raw data with columns and observations 
+glimpse(data)
+```
+
+- The above chunk shows the column names of the raw dataset. The columns are selected based on the research questions to be answered. The column names are cleaned by renaming the columns clearly and prepared to be useful for analysis.
+
+```{r CleaningData, echo=FALSE, message=FALSE, warning=FALSE}
+#cleaning column names
+cleandata <- data %>% rename(Title = title, Year = year, Language = language, Production_Company = production_company, Budget = budget, USA_Gross = usa_gross_income, User_Reviews = reviews_from_users, Critic_Reviews = reviews_from_critics) %>% select(Title, Year, Language, Production_Company, Budget, USA_Gross, User_Reviews, Critic_Reviews)
+```
+
+```{r PrepData, message=FALSE, warning=FALSE, echo=FALSE}
+#tidying data by filtering null values
+grossdata <- cleandata %>%  filter((!Budget == "" | NA), (!USA_Gross == "" | NA))
+reviewdata <- cleandata %>%  filter((!User_Reviews == "" | NA), (!Critic_Reviews == "" | NA))
+```
+
+Tidyverse (@tidyverse) is used to clean the data and kableExtra (@kable) is used to display tables.
+
+```{r GrossTable, fig.pos="H", message=FALSE, warning=FALSE, echo=FALSE}
+head(grossdata, 10) %>% select(Title, Budget, USA_Gross) %>% kable("latex", booktabs = T, caption = "Sample Gross Data Table") %>% 
+  kable_styling( position = c("center", "hold"))
+```
+
+The table \@ref(tab:GrossTable) shows a sample of the gross data used for the analysis. The main columns needed for Gross analysis are Title, Budget, and USA_Gross.
+
+```{r ReviewTable,  fig.pos="H", message=FALSE, warning=FALSE, echo=FALSE}
+head(reviewdata, 10) %>% select(Title, User_Reviews, Critic_Reviews) %>% kable("latex", booktabs = T, caption = "Sample Review Data Table") %>% 
+  kable_styling( position = c("center", "hold"))
+```
+
+The table \@ref(tab:ReviewTable) shows a sample of the review data used for the analysis. The main columns needed for Gross analysis are Title, User_Reviews, and Critic_Reviews.
+
+Using the table contents, we plot data for a particular movie franchise. The franchises selected for this anlysis are Avengers and Spider-Man. We display plots to analyse how much the franchise spent for the movie and how much it grossed. Also a plot for the user reviews and critic reviews are displayed to see which were the most popular among all the movies in the franchise. We also plot the same for all the movies in the dataset.
+
+```{r AvengersGross,fig.pos="H", fig.cap="Avengers Budget v/s Gross", fig.align="center", echo=FALSE, fig.height= 3}
+#plotting budget vs gross for "Avengers Franchise"
+grossdata %>% select(Title, Production_Company, Budget, USA_Gross) %>% 
+  filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>% 
+  ggplot(aes(x = Budget, y = USA_Gross, label = Title)) +
+  geom_point() +
+  geom_text(vjust = 0, nudge_y = 0.25)+
+  ggtitle("Avenger Movies Gross") + theme_bw()
+```
+
+From the figure \@ref(fig:AvengersGross), it can be seen that all Avenger movies grossed more than the amount spent. Avengers: Age of Ultron grossed relatively lesser than the other movies. Endgame was the highest grossing Avenger movie.
+
+
+```{r AvengersReview,fig.pos="H", fig.cap="Avengers Popularity", fig.align="center", echo=FALSE, fig.height= 3}
+#plotting number of user reviews and critic reviews for "Avengers Franchise"
+reviewdata %>% select(Title, Year, Production_Company, User_Reviews, Critic_Reviews) %>% 
+  filter(Title %in% c("The Avengers", "Avengers: Age of Ultron", "Avengers: Infinity War", "Avengers: Endgame"), Production_Company == "Marvel Studios") %>% 
+  ggplot(aes(x = Critic_Reviews, y = User_Reviews, color = Title, label = Year)) +
+  geom_point() +
+  geom_text(vjust = 0, nudge_y = 0.25)+
+  ggtitle("Avenger Movies Popularity") + theme_bw()
+```
+
+The figure \@ref(fig:AvengersReview) displays how many reviews was given by users and critics. This can be a measure of how much the movies were talked about. The year tags show the timeline. It is evident that the first avenger movie in 2012 attracted the attention of critics with a high number of critic reviews. As time passed by, the movies become more popular among users which shows an increse in the fanbase till 2019. The only exception to this is a dip in user reviews for Age of Ultron which justifies why it grossed lesser than other movies.
+
+```{r SpiderManPlot, fig.pos="H", fig.cap="Spider-Man Budget v/s Gross", fig.align="center", echo=FALSE, fig.height= 3}
+#plotting budget vs gross for "Spider-Man Movies" 
+grossdata %>% select(Title, Language, Production_Company, Budget, USA_Gross) %>% 
+  filter(Title %in% c("Spider-Man", "Spider-Man 2", "Spider-Man 3", "The Amazing Spider-Man", "The Amazing Spider-Man 2", "Spider-Man: Homecoming", "Spider-Man: Far from Home")) %>%
+  ggplot(aes(x = Budget, y = USA_Gross, label = Title)) +
+  geom_point() +
+  geom_text(vjust = 0, nudge_y = 0.25)+
+  ggtitle("Spider-Man Movies Gross") + theme_bw()
+```
+
+The figure \@ref(fig:SpiderManPlot) shows the budget and gross of Spider-Man movies. Spider-Man grossed the highest and the sequels Spider-Man 2 and Spider-Man 3 grossed lesser showing a decline in the gross. The Amazing Spider-Man seems to have grossed better than its sequel The Amazing Spider-Man 2. These movies has grossed far less than the first 3 movies. The Homecoming and Far from Home movies seem to have made a great comeback in terms of its gross compared to the fourth and fifth movies. Far from Home has grossed more and spent less which makes it the second best Spider-Man movie after the first ever one in the franchise.
+
+The figure \@ref(fig:SpiderManReview) shows a graph for the number of reviews by critics and users over a period of time named by the years for each points. The first ever movie was most talked about by both fans and users in 2002. We see a dip in user reviews for 2004 and the movie in 2007 was a little better but the first ever was the best recieved. The fourth and fifth movies in 2012 and 2014 was talked about most by critics but never really kicked off among fans. This justifies its low grosses. The final sixth and seventh movies in 2017 and 2019 have made a great comeback after this dip and the latest one during 2019 has managed to almost equal the fanbase like it was when the franchise started.
+
+```{r SpiderManReview, fig.pos="H", fig.cap="Spider-Man Popularity", fig.align="center", echo=FALSE, fig.height= 3}
+#plotting number of user reviews and critic reviews for "Spider-Man Movies"
+reviewdata %>% select(Title, Year, Production_Company, User_Reviews, Critic_Reviews) %>% 
+  filter(Title %in% c("Spider-Man", "Spider-Man 2", "Spider-Man 3", "The Amazing Spider-Man", "The Amazing Spider-Man 2", "Spider-Man: Homecoming", "Spider-Man: Far from Home")) %>% 
+  ggplot(aes(x = Critic_Reviews, y = User_Reviews, color = Title, label = Year)) +
+  geom_point() +
+  geom_text(vjust = 0, nudge_y = 0.25)+
+  ggtitle("Spider-Man Movies Popularity") + theme_bw()
+```
+
+```{r AllReviewsPlot, fig.pos="H", fig.cap="All-time Popularity", fig.align="center", echo=FALSE, warning=FALSE, fig.height= 5}
+#plotting all-time user reviews and critic reviews for entire dataset
+reviewdata %>%
+  ggplot(aes(x = Critic_Reviews, y = User_Reviews, label = Title)) +
+  geom_point() +
+  geom_text(vjust = "inward", hjust = "inward") +
+  xlim(0, 1000) +
+  ggtitle("Most-Talked-About Movies by Users & Critics") + theme_bw()
+```
+
+The figure \@ref(fig:AllReviewsPlot) looks shabby when you first look at it but it has some insights that can be drawn from it. The black cluster at the left bottom are the movies that have a low number of reviews by both users and critics. These are the least popular movies. The outliers are clearly visible in this plot with Endgame being the most popular among fans around the globe. This plot is used to pick the most popular movies to be used to compare the budget and gross. It is not necessary for a movie to be good, to be most talked about. So the next plot serves as a verification to confirm if the movie was talked about because it was good, or bad.
+
+```{r AllGrossPlot, fig.pos="H", fig.cap="Some all-time Popular Movies and their Gross", fig.align="center", echo=FALSE, warning=FALSE, fig.height= 5}
+#plotting all-time budget vs gross for some of the most reviewed movies
+grossdata %>% select(Title, Year, Budget, USA_Gross) %>% 
+  filter(Title %in% c("Avengers: Endgame", "Joker", "The Shawshank Redemption", "Captain Marvel", "The Dark Knight", "Star Wars: Episode VIII - The Last Jedi", "The Lord of the Rings: The Fellowship of the Ring", "Avengers: Infinity War", "The Matrix", "Avatar", "Star Wars: Episode VII - The Force Awakens", "Once Upon a Time in Hollywood", "Black Panther", "The Godfather", "The Godfather: Part II", "The Godfather: Part III", "Bohemian Rhapsody", "Man of Steel", "Prometheus", "Batman v Superman: Dawn of Justice", "Star Wars: Episode I - The Phantom Menace", "Indiana Jones and the Kingdom of the Crystal Skull", "The Shape of Water")) %>%
+  ggplot(aes(x = Budget, y = USA_Gross, label = Title, color = Year)) +
+  geom_point() +
+  geom_text(vjust = "inward", hjust = "inward")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("'Most-talked-about' Movies & their Gross") +
+  scale_color_viridis(begin = 1, end = 0)
+```
+
+The figure \@ref(fig:AllGrossPlot) shows the budget and gross of the most popular movies from over a century. We can compare the production cost, which is the budget, and the gross to ensure that it was most talked about because it was good. This plot also has information about the decade it was released in. This was to ensure there was no bias between the movies since currency value is always changing. The values are discrete and shows how much was spent and how much was grossed for that time. The gradient is gven to year using Viridis (@viridis).
+
+**Conclusion**
+
+In conclusion, we can see a general trend that a movie that is most talked about by the users or fans has grossed the most amount of money compared to lesser popular movies. The number of reviews by users can generally be used to predict if it was a box office hit.
