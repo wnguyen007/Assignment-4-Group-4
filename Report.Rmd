@@ -1,4 +1,5 @@
 ---
+
 title: "Assignment 4 - Group 4"
 author:
 - familyname: Nguyen
@@ -23,10 +24,19 @@ library(tidyverse)
 library(dplyr)
 library(kableExtra)
 library(bookdown)
+library(treemap)
+library(knitr)
 ```
 
 
-```{r Loading dataset}
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache=TRUE, message=FALSE, warning = FALSE)
+```
+
+```{r Loading dataset,echo = FALSE}
 dat = read.csv("Data/IMDb movies.csv")
 glimpse(dat)
 ```
@@ -38,6 +48,7 @@ dat %>%
         kable(caption = "Metascore summary") %>%
         kable_styling(bootstrap_options = c("striped", "hover"))
 ```
+
 
 According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
 
@@ -80,6 +91,145 @@ The aforementioned 'classics bias' is further confirmed by both Table \@ref(tab:
 
 Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger. 
 
+
+
+
+# Language
+ 
+## The proportion of top 100 movie language
+
+
+```{r language,echo=FALSE,fig.cap="The proportion of top 100 movie language",warning=FALSE}
+top100 <- head(names(sort(table(dat$language),decreasing = TRUE)),100) 
+most_language <- dat %>% 
+    filter(language %in% top100) %>% 
+    group_by(language) %>%
+    summarize(total = n()) %>%
+    arrange(-total) %>%
+    treemap(publisher_tm, index = "language",
+                  vSize = "total",
+                 fontsize.labels = 12,
+                  palette = "YlOrRd",
+            title = "The proportion of top 100 movie language",
+                       fontsize.title = 20)
+```
+
+ 
+The figure \@ref(fig:language)shows the proportion of the number top 100 languages. It can clearly be seen that the English movies account for almost half of all movies. French, Spanish, Japanese, Italian almost have the same proportion with the number of above 2500. It is very clear to see the situation about the distribution. 
+
+## Number of top 9 languages between 2009 and 2019
+
+```{r language_year,echo = FALSE,fig.cap="Number of top 9 languages between 2009 and 2019"}
+
+top9 <- dat %>% 
+  filter(year %in% c(2009:2019)) 
+top_9_last <- head(names(sort(table(top9$language),decreasing = TRUE)),9) 
+
+
+language_9 <- dat %>% 
+  select (year,language) %>% 
+  filter(language %in% top_9_last ,year %in% c(2009:2019)) %>% 
+  group_by (year,language) %>%  
+  count(language)
+
+language_9 %>% 
+  ggplot(aes(x= year, y= n))+
+  geom_line(color = "steelblue",size = 2)+
+  facet_wrap(~ language,scales = "free_y")+
+  scale_x_continuous(breaks = seq(2009, 2019, by = 1))+
+  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=1)) +
+  xlab("year")+
+  ylab("Number of top 9 languages between 2009 and 2019")
+```
+
+figure \@ref(fig:language_year) shows the number of different languages movies between 2009 and 2019. It can be clearly seen that the largest number of movie languages is English, it has an increasing trend between 2009 and 2017 and will drop to 600 in 2019. The number of  Korean language movies have the minimum quantity within the 9 languages, it shows a decreasing trend during the ten years. The number of French,German, Japanese and Italian, they almost maintained the level from 2009 to 2017, and then sharply decreased to 2019.
+#  Genres 
+
+## The proportion of top 100 movie genres
+
+```{r genres,echo = FALSE,fig.cap="The proportion of top 100 movie genres"}
+top100_genre<- head(names(sort(table(dat$genre),decreasing = TRUE)),100) 
+most_genre <- dat %>% 
+    filter(genre %in% top100_genre) %>% 
+    group_by(genre) %>%
+    summarize(total = n()) %>%
+    arrange(-total) %>%
+    treemap(publisher_tm, index = "genre",
+                  vSize = "total",
+                  fontsize.labels = 12,
+                  palette = "YlOrRd",
+                  title="The proportion of top 100 movie genres",
+     
+                       fontsize.title = 20)
+```
+
+figure \@ref(fig:genres) shows the  proportion of top 100 movie genres, from the figure, we can see that the drama and comedy almost occupied 30% of total movies, followed by the horror, comedy and romance, drama and romance, thriller.etc almost have the same proportion, this picture clearly shows the proportion of different movie genres.
+
+## Number of top 10 genres of movies published from 2009 to 2019
+
+```{r genres_year,echo = FALSE,fig.cap="Number of top 10 types of movies published from 2009 to 2019"}
+top10_genres <- dat %>% 
+  filter(year %in% c(2009:2019)) 
+top_10_genres <- head(names(sort(table(top10_genres$genre),decreasing = TRUE)),10) 
+
+dat_genre <- dat %>% 
+  select (genre,year) %>% 
+  filter(genre %in%top_10_genres,year %in% c(2009:2019)) %>%
+  group_by(genre,year) %>% 
+  count(year) %>% 
+  arrange(desc(n)) 
+
+ggplot(dat_genre, aes(x = year, y = n))+
+  geom_col()+
+  geom_line(color = "red")+
+  facet_wrap(~genre,scales = "free_y")+
+  xlab ("Year") +
+  ylab ("Number of movies") +
+  ggtitle("Number of top 10 types of movies published from 2009 to 2019")+
+  scale_x_continuous(breaks = seq(2009,2019, by = 1))+
+  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=1)) 
+```
+
+figure \@ref(fig:genres_year) graph shows the change in the number of different movie genres in ten years, from this figure, it can be seen that,the number of dramas and comedies almost exceeds 100 every year, and dramas almost reach 500 every year. When it comes to the line chart, the number of almost all movie genres peaked in 2017 and then fell to 2019. This is because the  movie industry returns to the content ontology and enters the transition period from quantity to quality.
+
+# The largest number of movies genres in each country
+
+```{r max_genres,echo = FALSE}
+dat_genre_country <- dat %>% 
+  select (country, genre,year) %>%  
+  filter(year %in% c(2000:2020)) %>% 
+  group_by(country) %>% 
+  count(genre) 
+
+
+max_dat_genre_country <- dat_genre_country %>%  
+    group_by(country) %>% 
+    filter( n==max(n)) %>% 
+    arrange(desc(n)) 
+kable(
+max_dat_genre_country[1:10,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
+    
+
+```
+
+
+```{r pret_drame, echo = FALSE}
+
+  drama_genre_country <- max_dat_genre_country%>% 
+  group_by(genre) %>%  
+  summarise(total = sum(n)) %>% 
+  ungroup() %>% 
+  mutate(total_movies = sum(total)) %>% 
+  mutate(prop_genre= total / total_movies) %>% 
+  arrange(desc(prop_genre)) %>% 
+  head(5)
+
+kable(
+drama_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
+```
+
+Table \@ref(tab:max_genres) show the largest number of movies genres in each country in the 21st century, according to this table, we can see the the largest number of movies in many countries is drama, According Table \@ref(tab:pret_drame) , it shows the drama has the largest proportion with 58.84%, However, the second place comedy only reached 8%.
+ 
 # Citations
 
 tidyverse @tidyverse
@@ -89,3 +239,5 @@ dplyr @dplyr
 kableExtra @kableExtra
 
 bookdown @bookdown
+
+
