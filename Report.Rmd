@@ -79,3 +79,13 @@ dat3wn %>%
 The aforementioned 'classics bias' is further confirmed by both Table \@ref(tab:toptwentytable) and Figure \@ref(fig:toptwentyhistogram). This list is dominated by the most famous movies from the 1900's such as The Wizard of Oz, Citizen Kane and The Godfather which were all assigned perfect metascores. Moreover, seventeen of the twenty listed movies were released before 1975 and only one was released after 2000.
 
 Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger. 
+
+# Citations
+
+tidyverse @tidyverse
+
+dplyr @dplyr
+
+kableExtra @kableExtra
+
+bookdown @bookdown
