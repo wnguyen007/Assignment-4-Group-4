@@ -391,17 +391,18 @@ directors <- dat %>%
   arrange(-metascore, -movies)
 ```
 
-```{r dir_tab, fig.cap="Top Grossing Movies"}
+```{r dirtab}
 directors %>%
 kable(col.names = c("Director",
                       "Total Movies",
-                      "Metascore")) %>%
+                      "Metascore"),
+      caption = "Top Grossing Movies") %>%
   kable_styling()
 ```
 
-We get some interesting results, as on one hand there is Mike Leigh with as much as 13 movies but a lower average metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average metascore of 87 and 86 respectively. 
+We get some interesting results from Table \@ref(tab:dirtab), as on one hand there is Mike Leigh with as much as 13 movies but a lower average Metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average Metascore of 87 and 86 respectively. 
 
-```{r 2}
+```{r dirfig2, fig.cap="Total number of movies for Top Directors"}
 directors %>%
   ggplot(aes(x = director, y = movies, fill = metascore)) +
   geom_col() +
@@ -412,9 +413,9 @@ directors %>%
 
 ## Top Grossing Movie
 
-In this section, we'll look at the top grossing movie of the most successful directors that we established from Table \@ref(tab:dir_tab).
+In this section, we'll look at the top grossing movie of the most successful directors that we established from Table \@ref(tab:dirtab).
 
-```{r 3}
+```{r dirtab2}
 director_movie <- dat %>%
   right_join(directors, by = c("director" = "director")) %>%
   select(director, title, worlwide_gross_income)
@@ -432,11 +433,12 @@ director_movie_final %>%
   mutate(worlwide_gross_income = dollar(worlwide_gross_income)) %>%
   kable(col.names = c("Director",
                       "Highest Grossing Movie",
-                      "Total Revenue")) %>%
+                      "Total Revenue"),
+        caption = "Director Top grossing movies") %>%
   kable_styling()
 ```
 
-It can be observed that the *Alfonso Cuarón* is the director of the top grossing movie *Harry Potter and the Prisoner of Azkaban* which made \$796,093,802 worldwide. Followed by, *Damien Chazelle*, the director of *La La Land* grossing \$446,092,35. Suprisingly, *Patrick Wang*, with an average metascore of 86 and a total of 4 movies made the least at just \$101,934.
+It can be observed from Table \@ref(tab:dirtab2) that the *Alfonso Cuarón* is the director of the top grossing movie *Harry Potter and the Prisoner of Azkaban* which made \$796,093,802 worldwide. Followed by, *Damien Chazelle*, the director of *La La Land* grossing \$446,092,35. Suprisingly, *Patrick Wang*, with an average metascore of 86 and a total of 4 movies made the least at just \$101,934.
 
 ```{r 4, fig.align="center", fig.cap="Top Grossing Movies"}
 director_movie_final %>%
@@ -466,13 +468,14 @@ dat2 <- dat1 %>%
   head(10)
 ```
 
-```{r 7}
+```{r langtab}
 dat2 %>%
-  kable(col.names = c("Language", "Number of Movies")) %>%
+  kable(col.names = c("Language", "Number of Movies"),
+        caption = "Avg movie duration for each language") %>%
   kable_styling()
 ```
 
-From the above table, it is quite clear that most movies are released in either only *English* or in *multi-lingual* format.
+From the Table \@ref(tab:langtab), it is quite clear that most movies are released in either only *English* or in *multi-lingual* format.
 
 ```{r 8}
 dat3 <- dat1 %>%
@@ -483,13 +486,13 @@ dat3 <- dat1 %>%
 
 ### Is there a pattern in Movie length for various languages?
 
-```{r 9}
+```{r langtab2}
 dat3 %>%
   kable(col.names = c("Language", "Avg. Movie Duration")) %>%
   kable_styling()
 ```
 
-```{r 10, fig.align="center"}
+```{r langfig, fig.align="center", fig.cap="Movie Duration for different Languages"}
 dat3 %>%
   ggplot(aes(x = language, y = duration, fill = language)) +
   geom_col() +
@@ -498,9 +501,9 @@ dat3 %>%
   theme(legend.position = "bottom", axis.text.x=element_blank())
 ```
 
-From the plot above, we can infer that *Hindi* movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, *English* movies are usually the shortest at just 93 minutes.
+From the Figure \@ref(fig:langfig), we can infer that *Hindi* movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, *English* movies are usually the shortest at just 93 minutes.
 
-## Conclusion
+# Conclusion
 
 There appears to be a strong correlation between movies that have been given extremely high ratings and the mid 1950's. However, due to the inherent bias within this data set, it is still impossible to identify which periods truly experienced a higher quality of movie production.
 
