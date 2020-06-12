@@ -21,7 +21,7 @@
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
 \usepackage[unicode=true]{hyperref}
 \hypersetup{
-            pdftitle={ETC5512 Assignment 3: State of the Gender Gap},
+            pdftitle={ETC5513 Assignment 4: IMDB Data Analysis},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -58,7 +58,7 @@
 \makeatother
 
 
-\title{ETC5512 Assignment 3: State of the Gender Gap}
+\title{ETC5513 Assignment 4: IMDB Data Analysis}
 
 %% MONASH STUFF
 
@@ -199,11 +199,11 @@
 \DeclareDelimFormat[cbx@textcite]{nameyeardelim}{\addspace}
 \makeatother
 
-\author{\sf\Large\textbf{Mr Rahul Bharadwaj Mysore Venkatesh}\\ {\sf\large Master of Business Analytics\\[0.5cm]}}
+\author{\sf\Large\textbf{Mr  }\\ {\sf\large Master of Business Analytics\\[0.5cm]} \sf\Large\textbf{Ms Wang Xue}\\ {\sf\large Master of Business\\[0.5cm]} \sf\Large\textbf{Mr Rahul Bharadwaj Mysore Venkatesh}\\ {\sf\large Master of Business Analytics\\[0.5cm]} \sf\Large\textbf{Mr Aryan Jain}\\ {\sf\large Master of Business Analytics\\[0.5cm]}}
 
 \date{\sf\Date~\Month~\Year}
 \makeatletter
-\lfoot{\sf Mysore Venkatesh: \@date}
+\lfoot{\sf , Xue, Mysore Venkatesh, Jain: \@date}
 \makeatother
 
 
@@ -303,8 +303,8 @@
 \begin{document}
 \titlepage
 
-\hypertarget{wills-section.}{%
-\section{Will's section.}\label{wills-section.}}
+\hypertarget{williams-section}{%
+\section{William's Section}\label{williams-section}}
 
 \begin{verbatim}
 ## Rows: 81,273
@@ -433,8 +433,8 @@ Assuming that metascore is a reliable representation of a movie's quality, it is
 
 \newpage
 
-\hypertarget{xue-wang-section}{%
-\section{Xue Wang section}\label{xue-wang-section}}
+\hypertarget{xue-wangs-section}{%
+\section{Xue Wang's Section}\label{xue-wangs-section}}
 
 \hypertarget{language}{%
 \subsection{Language}\label{language}}
@@ -464,7 +464,8 @@ The figure \ref{fig:langyear} shows the number of different languages movies bet
 \hypertarget{genres}{%
 \subsection{Genres}\label{genres}}
 
-The proportion of top 100 movie genres
+\hypertarget{the-proportion-of-top-100-movie-genres}{%
+\subsubsection{The proportion of top 100 movie genres}\label{the-proportion-of-top-100-movie-genres}}
 
 \begin{figure}
 \centering
@@ -573,12 +574,6 @@ Comedy, Drama, Romance & 121 & 11103 & 0.0108980\\
 ## $ reviews_from_users    <dbl> 7, 4, 24, 28, 12, 11, 6, 3, 7, 9, 9, 16, 8, 2...
 ## $ reviews_from_critics  <dbl> 7, 2, 3, 14, 5, 9, 4, 1, 1, 9, 29, 7, 22, 2, ...
 \end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  The above chunk shows the column names of the raw dataset. The columns are selected based on the research questions to be answered. The column names are cleaned by renaming the columns clearly and prepared to be useful for analysis.
-\end{itemize}
 
 Tidyverse (\textcite{tidyverse}) is used to clean the data and kableExtra (\textcite{kableExtra}) is used to display tables.
 
@@ -884,8 +879,6 @@ tidyverse \textcite{tidyverse}
 dplyr \textcite{dplyr}
 
 kableExtra \textcite{kableExtra}
-
-bookdown \textcite{bookdown}
 
 treemap \textcite{treemap}
 
