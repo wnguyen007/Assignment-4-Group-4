@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.5.19)  12 JUN 2020 12:41
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit) (preloaded format=pdflatex 2020.4.14)  12 JUN 2020 12:41
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1291,7 +1295,11 @@ Package biblatex Info: Data encoding 'utf8' specified.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Report.bbl' found.
+<<<<<<< HEAD
 (./Report.bbl)
+=======
+(Report.bbl)
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 Package biblatex Info: Reference section=0 on input line 303.
 Package biblatex Info: Reference segment=0 on input line 303.
 
@@ -1319,7 +1327,11 @@ ction with package mdbch, on input line 303.
 Package mathdesign/mdbch Warning: Package 'amsfonts' shouldn't be used in conjo
 nction with package mdbch, on input line 303.
 
+<<<<<<< HEAD
 <MBSportrait.pdf, id=84, 213.79875pt x 90.3375pt>
+=======
+<MBSportrait.pdf, id=87, 213.79875pt x 90.3375pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: MBSportrait.pdf Graphic file (type pdf)
 <use MBSportrait.pdf>
 Package pdftex.def Info: MBSportrait.pdf  used on input line 304.
@@ -1609,16 +1621,26 @@ LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
 (Font)              scaled to size 10.51207pt on input line 338.
 LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
 (Font)              scaled to size 10.51207pt on input line 338.
+<<<<<<< HEAD
 <Report_files/figure-latex/metascorescatterplot-1.pdf, id=98, 469.755pt x 325.2
 15pt>
+=======
+[2]
+<Report_files/figure-latex/metascorescatterplot-1.pdf, id=112, 469.755pt x 325.
+215pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/metascorescatterplot-1.pdf Graphic file (type p
 df)
 <use Report_files/figure-latex/metascorescatterplot-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/metascorescatterplot-1.pdf  
 used on input line 367.
 (pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
+<<<<<<< HEAD
 [2]
 <Report_files/figure-latex/toptwentyhistogram-1.pdf, id=109, 469.755pt x 325.21
+=======
+<Report_files/figure-latex/toptwentyhistogram-1.pdf, id=114, 469.755pt x 325.21
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 5pt>
 File: Report_files/figure-latex/toptwentyhistogram-1.pdf Graphic file (type pdf
 )
@@ -1630,127 +1652,187 @@ ed on input line 426.
 /figure-latex/toptwentyhistogram-1.pdf>] [5]
 LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 (Font)              scaled to size 9.24173pt on input line 443.
+<<<<<<< HEAD
 <Report_files/figure-latex/language-1.pdf, id=139, 469.755pt x 433.62pt>
+=======
+<Report_files/figure-latex/language-1.pdf, id=142, 469.755pt x 433.62pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/language-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/language-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/language-1.pdf  used on inpu
 t line 447.
 (pdftex.def)             Requested size: 455.24608pt x 420.22714pt.
+<<<<<<< HEAD
 <Report_files/figure-latex/langyear-1.pdf, id=141, 469.755pt x 433.62pt>
+=======
+<Report_files/figure-latex/langyear-1.pdf, id=144, 469.755pt x 433.62pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/langyear-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/langyear-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/langyear-1.pdf  used on inpu
 t line 458.
 (pdftex.def)             Requested size: 455.24608pt x 420.22714pt.
 [6 <./Report_files/figure-latex/language-1.pdf>]
-<Report_files/figure-latex/genres-1.pdf, id=158, 469.755pt x 433.62pt>
+<Report_files/figure-latex/genres-1.pdf, id=162, 469.755pt x 433.62pt>
 File: Report_files/figure-latex/genres-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/genres-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/genres-1.pdf  used on input 
-line 471.
+line 472.
 (pdftex.def)             Requested size: 455.24608pt x 420.22714pt.
+<<<<<<< HEAD
 [7 <./Report_files/figure-latex/langyear-1.pdf>]
 <Report_files/figure-latex/genresyear-1.pdf, id=173, 469.755pt x 361.35pt>
+=======
+<Report_files/figure-latex/genresyear-1.pdf, id=164, 469.755pt x 361.35pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/genresyear-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/genresyear-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/genresyear-1.pdf  used on in
-put line 482.
+put line 483.
 (pdftex.def)             Requested size: 455.24608pt x 350.18929pt.
 [8 <./Report_files/figure-latex/genres-1.pdf>] [9 <./Report_files/figure-latex/
 genresyear-1.pdf>]
 LaTeX Font Info:    Trying to load font information for TS1+mdbch on input line
- 543.
+ 544.
 
 (c:/Users/Will/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/mathdesign/mdbch/ts
 1mdbch.fd
 File: ts1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for TS1/mdbch.
 )
 LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
+<<<<<<< HEAD
 (Font)              scaled to size 10.51207pt on input line 543.
 [10]
 Package textcomp Info: Symbol \textcurrency not provided by
 (textcomp)             font family fvm in TS1 encoding.
 (textcomp)             Default family used instead on input line 575.
+=======
+(Font)              scaled to size 10.51207pt on input line 544.
+Package textcomp Info: Symbol \textcurrency not provided by
+(textcomp)             font family fvm in TS1 encoding.
+(textcomp)             Default family used instead on input line 576.
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 Package textcomp Info: Symbol \textasciidieresis not provided by
 (textcomp)             font family mdbch in TS1 encoding.
-(textcomp)             Default family used instead on input line 602.
+(textcomp)             Default family used instead on input line 597.
 
 (c:/Users/Will/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.cf
 g
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 ) [11]
+<<<<<<< HEAD
 <Report_files/figure-latex/AvengersGross-1.pdf, id=220, 469.755pt x 216.81pt>
+=======
+<Report_files/figure-latex/AvengersGross-1.pdf, id=221, 469.755pt x 216.81pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/AvengersGross-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/AvengersGross-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/AvengersGross-1.pdf  used on
- input line 639.
+ input line 634.
 (pdftex.def)             Requested size: 455.24608pt x 210.11356pt.
+<<<<<<< HEAD
 <Report_files/figure-latex/AvengersReview-1.pdf, id=222, 469.755pt x 216.81pt>
+=======
+[12]
+<Report_files/figure-latex/AvengersReview-1.pdf, id=230, 469.755pt x 216.81pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/AvengersReview-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/AvengersReview-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/AvengersReview-1.pdf  used o
-n input line 650.
+n input line 645.
 (pdftex.def)             Requested size: 455.24608pt x 210.11356pt.
+<<<<<<< HEAD
 [12 <./Report_files/figure-latex/AvengersGross-1.pdf>]
 <Report_files/figure-latex/SpiderManPlot-1.pdf, id=236, 469.755pt x 216.81pt>
+=======
+<Report_files/figure-latex/SpiderManPlot-1.pdf, id=232, 469.755pt x 216.81pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/SpiderManPlot-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/SpiderManPlot-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/SpiderManPlot-1.pdf  used on
- input line 661.
+ input line 656.
 (pdftex.def)             Requested size: 455.24608pt x 210.11356pt.
+<<<<<<< HEAD
 [13 <./Report_files/figure-latex/AvengersReview-1.pdf>]
 <Report_files/figure-latex/SpiderManReview-1.pdf, id=250, 469.755pt x 216.81pt>
+=======
+[13 <./Report_files/figure-latex/AvengersGross-1.pdf> <./Report_files/figure-la
+tex/AvengersReview-1.pdf>]
+<Report_files/figure-latex/SpiderManReview-1.pdf, id=253, 469.755pt x 216.81pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 
 File: Report_files/figure-latex/SpiderManReview-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/SpiderManReview-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/SpiderManReview-1.pdf  used 
-on input line 674.
+on input line 669.
 (pdftex.def)             Requested size: 455.24608pt x 210.11356pt.
 [14 <./Report_files/figure-latex/SpiderManPlot-1.pdf>]
+<<<<<<< HEAD
 <Report_files/figure-latex/AllReviewsPlot-1.pdf, id=262, 469.755pt x 361.35pt>
+=======
+<Report_files/figure-latex/AllReviewsPlot-1.pdf, id=265, 469.755pt x 361.35pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/AllReviewsPlot-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/AllReviewsPlot-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/AllReviewsPlot-1.pdf  used o
-n input line 683.
+n input line 678.
 (pdftex.def)             Requested size: 455.24608pt x 350.18929pt.
 [15 <./Report_files/figure-latex/SpiderManReview-1.pdf> <./Report_files/figure-
 latex/AllReviewsPlot-1.pdf>]
+<<<<<<< HEAD
 <Report_files/figure-latex/AllGrossPlot-1.pdf, id=279, 469.755pt x 361.35pt>
+=======
+<Report_files/figure-latex/AllGrossPlot-1.pdf, id=282, 469.755pt x 361.35pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/AllGrossPlot-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/AllGrossPlot-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/AllGrossPlot-1.pdf  used on 
-input line 694.
+input line 689.
 (pdftex.def)             Requested size: 455.24608pt x 350.18929pt.
 [16 <./Report_files/figure-latex/AllGrossPlot-1.pdf>] [17]
 Package textcomp Info: Symbol \textthreesuperior not provided by
 (textcomp)             font family mdbch in TS1 encoding.
+<<<<<<< HEAD
 (textcomp)             Default family used instead on input line 739.
 <Report_files/figure-latex/2-1.pdf, id=298, 469.755pt x 325.215pt>
+=======
+(textcomp)             Default family used instead on input line 734.
+<Report_files/figure-latex/2-1.pdf, id=300, 469.755pt x 325.215pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/2-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/2-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/2-1.pdf  used on input line 
-752.
+747.
 (pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
 [18]
 Package textcomp Info: Symbol \textthreesuperior not provided by
 (textcomp)             font family mdbch in TS1 encoding.
-(textcomp)             Default family used instead on input line 765.
+(textcomp)             Default family used instead on input line 760.
 [19 <./Report_files/figure-latex/2-1.pdf>]
+<<<<<<< HEAD
 <Report_files/figure-latex/4-1.pdf, id=320, 469.755pt x 325.215pt>
+=======
+<Report_files/figure-latex/4-1.pdf, id=322, 469.755pt x 325.215pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/4-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/4-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/4-1.pdf  used on input line 
-792.
+787.
 (pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
 [20 <./Report_files/figure-latex/4-1.pdf>]
+<<<<<<< HEAD
 <Report_files/figure-latex/10-1.pdf, id=333, 469.755pt x 325.215pt>
+=======
+<Report_files/figure-latex/10-1.pdf, id=335, 469.755pt x 325.215pt>
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 File: Report_files/figure-latex/10-1.pdf Graphic file (type pdf)
 <use Report_files/figure-latex/10-1.pdf>
 Package pdftex.def Info: Report_files/figure-latex/10-1.pdf  used on input line
- 868.
+ 863.
 (pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
 [21] [22 <./Report_files/figure-latex/10-1.pdf>]
+<<<<<<< HEAD
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 900.
 [23]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 900.
@@ -1793,4 +1875,54 @@ PDF statistics:
  364 compressed objects within 4 object streams
  94 named destinations out of 1000 (max. 500000)
  30961 words of extra memory for PDF output out of 35830 (max. 10000000)
+=======
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 891.
+[23]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 891.
+(Report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 891.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 891.
+Package rerunfilecheck Info: File `Report.out' has not changed.
+(rerunfilecheck)             Checksum: 51C3E8C41E6E68A4872858135370E2CB;4848.
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please rerun LaTeX.
+(biblatex)                Page breaks have changed.
+
+Package logreq Info: Writing requests to 'Report.run.xml'.
+\openout1 = `Report.run.xml'.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 891.
+ ) 
+Here is how much of TeX's memory you used:
+ 27016 strings out of 480934
+ 450798 string characters out of 2899917
+ 1109784 words of memory out of 3000000
+ 42107 multiletter control sequences out of 15000+200000
+ 639689 words of font info for 274 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 45i,14n,90p,1197b,1429s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Rahul\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
+tcrm1095.pk> <C:\Users\Rahul\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
+ec/dpi600\tctt1095.pk>{C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/e
+nc/dvips/base/8r.enc}{C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/en
+c/dvips/ly1/texnansi.enc}{C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/font
+s/enc/dvips/fontawesome/fontawesometwo.enc}<C:/Users/Rahul/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/fontawesome/FontAwesome.pfb><C:/Users/Rahul/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchb8a.pfb><C:/Use
+rs/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchr8a.
+pfb><C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/bitstrea/char
+ter/bchri8a.pfb><C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/b
+era/fvmr8a.pfb><C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/be
+ra/fvsb8a.pfb><C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/ber
+a/fvsr8a.pfb><C:/Users/Rahul/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/math
+design/mdbch/md-chri8t.pfb>
+Output written on Report.pdf (23 pages, 4095372 bytes).
+PDF statistics:
+ 435 PDF objects out of 1000 (max. 8388607)
+ 95 named destinations out of 1000 (max. 500000)
+ 30969 words of extra memory for PDF output out of 35830 (max. 10000000)
+>>>>>>> 55f4cc96057cbcb5c3b37a5d83b958736aa1b4ac
 

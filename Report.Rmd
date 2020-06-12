@@ -1,8 +1,26 @@
 ---
-title: "ETC5512 Assignment 3: State of the Gender Gap"
+title: "ETC5513 Assignment 4: IMDB Data Analysis"
 author:
+- familyname: 
+  othernames: 
+  title: Mr
+  qualifications: Master of Business Analytics
+  email: rmys0001@student.monash.edu
+  correspondingauthor: true
+- familyname: Xue
+  othernames: Wang
+  title: Ms
+  qualifications: Master of Business
+  email: rmys0001@student.monash.edu
+  correspondingauthor: true
 - familyname: Mysore Venkatesh
   othernames: Rahul Bharadwaj
+  title: Mr
+  qualifications: Master of Business Analytics
+  email: rmys0001@student.monash.edu
+  correspondingauthor: true
+- familyname: Jain
+  othernames: Aryan
   title: Mr
   qualifications: Master of Business Analytics
   email: rmys0001@student.monash.edu
@@ -36,21 +54,20 @@ library(scales)
 knitr::opts_chunk$set(echo = FALSE, cache=TRUE, message=FALSE, warning = FALSE)
 ```
 
-# Will's section.
+# William's Section
 
 ```{r Loading dataset,echo = FALSE}
 dat <- read.csv(here::here("Data/IMDb movies.csv"))
 glimpse(dat)
 ```
 
-```{r metascoretable}
+```{r metascoretable, fig.pos='H'}
 dat %>% 
         dplyr::select(metascore) %>%
         summary() %>%
         kable(caption = "Metascore summary") %>%
         kable_styling(bootstrap_options = c("striped", "hover"))
 ```
-
 
 According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
 
@@ -94,7 +111,7 @@ The aforementioned 'classics bias' is further confirmed by both Table \@ref(tab:
 Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger. 
 
 \newpage
-# Xue Wang section
+# Xue Wang's Section
 
 ## Language
  
@@ -145,7 +162,7 @@ The figure \@ref(fig:langyear) shows the number of different languages movies be
 
 ## Genres 
 
-The proportion of top 100 movie genres
+### The proportion of top 100 movie genres
 
 ```{r genres, echo = FALSE, fig.cap = "The proportion of top 100 movie genres", fig.height=6, fig.pos="H"}
 top100_genre<- head(names(sort(table(dat$genre),decreasing = TRUE)),100) 
@@ -246,8 +263,6 @@ data <- read.csv(here::here("Data/IMDb movies.csv"))
 #sample of raw data with columns and observations 
 glimpse(data)
 ```
-
-- The above chunk shows the column names of the raw dataset. The columns are selected based on the research questions to be answered. The column names are cleaned by renaming the columns clearly and prepared to be useful for analysis.
 
 ```{r CleaningData, echo=FALSE, message=FALSE, warning=FALSE}
 #cleaning column names
@@ -500,8 +515,6 @@ tidyverse @tidyverse
 dplyr @dplyr
 
 kableExtra @kableExtra
-
-bookdown @bookdown
 
 treemap @treemap
 
