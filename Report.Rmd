@@ -1,11 +1,11 @@
 ---
 title: "ETC5513 Assignment 4: IMDB Data Analysis"
 author:
-- familyname: 
-  othernames: 
+- familyname: Nguyen
+  othernames: Will
   title: Mr
-  qualifications: Master of Business Analytics
-  email: rmys0001@student.monash.edu
+  qualifications: Master of Actuarial Science
+  email: wngu0007@student.monash.edu
   correspondingauthor: true
 - familyname: Xue
   othernames: Wang
