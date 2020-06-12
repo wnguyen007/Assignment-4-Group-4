@@ -51,25 +51,25 @@ library(scales)
 ```
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, cache=TRUE, message=FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, cache=TRUE, message=FALSE, warning = FALSE, fig.pos = "H")
 ```
-
-# William's Section
 
 ```{r Loading dataset,echo = FALSE}
 dat <- read.csv(here::here("Data/IMDb movies.csv"))
 glimpse(dat)
 ```
 
-```{r metascoretable, fig.pos='H'}
+# William's Section
+
+According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
+
+```{r metascoretable}
 dat %>% 
         dplyr::select(metascore) %>%
         summary() %>%
         kable(caption = "Metascore summary") %>%
-        kable_styling(bootstrap_options = c("striped", "hover"))
+        kable_styling(bootstrap_options = c("striped", "hover", "hold position"))
 ```
-
-According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
 
 Therefore, it is important to first consider the distribution of metascore within the data set. This is summarised by Table \@ref(tab:metascoretable). The most noteworthy features are that the median and mean are very close at 56 and 55.76 respectively and nearly 70,000 movies have not been assigned a metascore. Consequently, any analysis related to the metascore variable must be treated with caution as less than 20% of the movies are represented. 
 
@@ -110,7 +110,6 @@ The aforementioned 'classics bias' is further confirmed by both Table \@ref(tab:
 
 Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger. 
 
-\newpage
 # Xue Wang's Section
 
 ## Language
@@ -246,7 +245,6 @@ kable(
 drama_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
 ```
 
-\newpage
 # Rahul's Section.
 
 ## Movie Grosses and Popularity Analysis
@@ -368,11 +366,6 @@ grossdata %>% select(Title, Year, Budget, USA_Gross) %>%
 
 The figure \@ref(fig:AllGrossPlot) shows the budget and gross of the most popular movies from over a century. We can compare the production cost, which is the budget, and the gross to ensure that it was most talked about because it was good. This plot also has information about the decade it was released in. This was to ensure there was no bias between the movies since currency value is always changing. The values are discrete and shows how much was spent and how much was grossed for that time. The gradient is gven to year using Viridis.
 
-## Conclusion
-
-In conclusion, we can see a general trend that a movie that is most talked about by the users or fans has grossed the most amount of money compared to lesser popular movies. The number of reviews by users can generally be used to predict if it was a box office hit.
-
-\newpage
 # Aryan's Section.
 
 ## Director Analysis
@@ -397,7 +390,7 @@ kable(col.names = c("Director",
                       "Total Movies",
                       "Metascore"),
       caption = "Top Grossing Movies") %>%
-  kable_styling()
+  kable_styling(latex_options = c("striped", "hold_position"))
 ```
 
 We get some interesting results from Table \@ref(tab:dirtab), as on one hand there is Mike Leigh with as much as 13 movies but a lower average Metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average Metascore of 87 and 86 respectively. 
@@ -435,7 +428,7 @@ director_movie_final %>%
                       "Highest Grossing Movie",
                       "Total Revenue"),
         caption = "Director Top grossing movies") %>%
-  kable_styling()
+  kable_styling(latex_options = c("striped", "hold_position"))
 ```
 
 It can be observed from Table \@ref(tab:dirtab2) that the *Alfonso Cuarón* is the director of the top grossing movie *Harry Potter and the Prisoner of Azkaban* which made \$796,093,802 worldwide. Followed by, *Damien Chazelle*, the director of *La La Land* grossing \$446,092,35. Suprisingly, *Patrick Wang*, with an average metascore of 86 and a total of 4 movies made the least at just \$101,934.
@@ -471,8 +464,8 @@ dat2 <- dat1 %>%
 ```{r langtab}
 dat2 %>%
   kable(col.names = c("Language", "Number of Movies"),
-        caption = "Avg movie duration for each language") %>%
-  kable_styling()
+        caption = "Number of movies per language") %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
 ```
 
 From the Table \@ref(tab:langtab), it is quite clear that most movies are released in either only *English* or in *multi-lingual* format.
@@ -488,8 +481,8 @@ dat3 <- dat1 %>%
 
 ```{r langtab2}
 dat3 %>%
-  kable(col.names = c("Language", "Avg. Movie Duration")) %>%
-  kable_styling()
+  kable(col.names = c("Language", "Avg. Movie Duration"), caption = "Average movie duration for all languages") %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
 ```
 
 ```{r langfig, fig.align="center", fig.cap="Movie Duration for different Languages"}
@@ -505,11 +498,24 @@ From the Figure \@ref(fig:langfig), we can infer that *Hindi* movies are usually
 
 # Conclusion
 
+**William's Section Conclusion**
+
 There appears to be a strong correlation between movies that have been given extremely high ratings and the mid 1950's. However, due to the inherent bias within this data set, it is still impossible to identify which periods truly experienced a higher quality of movie production.
+
+**Xue's Section Conclusion**
+
+In conclusion,  the English movie has the largest proportion of language movies within ten years,  the drama movie is the favorite movie in all the country. 
+
+**Rahul's Section Conclusion**
+
+In conclusion, we can see a general trend that a movie that is most talked about by the users or fans has grossed the most amount of money compared to lesser popular movies. The number of reviews by users can generally be used to predict if it was a box office hit.
+
+**Aryan's Section Conclusion**
 
 For Director analysis, it is clear from Figure 1 and Figure 2 that there is no one single way to measure success and that all directors in the list are doing very good in their own ways.
 
 And from the Movie length analysis, we can infer that Hindi Movies are usually significantly longer than any other kind of movies. Also, english movies are among the shortest. We also concluded that movie language has an impact on movie length.
+
 
 # Citations
 

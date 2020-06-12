@@ -303,9 +303,6 @@
 \begin{document}
 \titlepage
 
-\hypertarget{williams-section}{%
-\section{William's Section}\label{williams-section}}
-
 \begin{verbatim}
 ## Rows: 81,273
 ## Columns: 22
@@ -333,6 +330,11 @@
 ## $ reviews_from_critics  <dbl> 7, 2, 3, 14, 5, 9, 4, 1, 1, 9, 29, 7, 22, 2, ...
 \end{verbatim}
 
+\hypertarget{williams-section}{%
+\section{William's Section}\label{williams-section}}
+
+According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
+
 \begin{table}
 
 \caption{\label{tab:metascoretable}Metascore summary}
@@ -357,8 +359,6 @@
 \hline
 \end{tabular}
 \end{table}
-
-According to IMDb, metascore is a single number that represents the overall critical opinion about a movie. Its legitimacy is derived from applying a weighted average to the reviews of the world's most respected critics. That said, metascore is still an extremely vague concept - particularly when it comes to the threshold of what metascore can be considered good.
 
 Therefore, it is important to first consider the distribution of metascore within the data set. This is summarised by Table \ref{tab:metascoretable}. The most noteworthy features are that the median and mean are very close at 56 and 55.76 respectively and nearly 70,000 movies have not been assigned a metascore. Consequently, any analysis related to the metascore variable must be treated with caution as less than 20\% of the movies are represented.
 
@@ -430,8 +430,6 @@ The Night of the Hunter & 1955 & 99\\
 The aforementioned `classics bias' is further confirmed by both Table \ref{tab:toptwentytable} and Figure \ref{fig:toptwentyhistogram}. This list is dominated by the most famous movies from the 1900's such as The Wizard of Oz, Citizen Kane and The Godfather which were all assigned perfect metascores. Moreover, seventeen of the twenty listed movies were released before 1975 and only one was released after 2000.
 
 Assuming that metascore is a reliable representation of a movie's quality, it is easy to see why arguments have been made that movies produced in recent times are not as good. Contrarily, a counterargument can be made that there were just as many bad movies made during previous generations that have been forgotten or overshadowed by the classics. Due to the clear bias within this dataset, it is still unclear which argument is stronger.
-
-\newpage
 
 \hypertarget{xue-wangs-section}{%
 \section{Xue Wang's Section}\label{xue-wangs-section}}
@@ -530,8 +528,6 @@ Comedy, Drama, Romance & 121 & 11103 & 0.0108980\\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\newpage
 
 \hypertarget{rahuls-section.}{%
 \section{Rahul's Section.}\label{rahuls-section.}}
@@ -695,13 +691,6 @@ The figure \ref{fig:AllReviewsPlot} looks shabby when you first look at it but i
 
 The figure \ref{fig:AllGrossPlot} shows the budget and gross of the most popular movies from over a century. We can compare the production cost, which is the budget, and the gross to ensure that it was most talked about because it was good. This plot also has information about the decade it was released in. This was to ensure there was no bias between the movies since currency value is always changing. The values are discrete and shows how much was spent and how much was grossed for that time. The gradient is gven to year using Viridis.
 
-\hypertarget{conclusion}{%
-\subsection{Conclusion}\label{conclusion}}
-
-In conclusion, we can see a general trend that a movie that is most talked about by the users or fans has grossed the most amount of money compared to lesser popular movies. The number of reviews by users can generally be used to predict if it was a box office hit.
-
-\newpage
-
 \hypertarget{aryans-section.}{%
 \section{Aryan's Section.}\label{aryans-section.}}
 
@@ -713,76 +702,84 @@ In conclusion, we can see a general trend that a movie that is most talked about
 
 Lets take a look at the some of the most successful directors from our dataset. Now, there are limitless ways to measure success but for our test, we're only looking at people with at least 4 movies under their belt and a Metascore upwards of 80. And conveniently, we get only 10 names.
 
-\begin{table}[H]
+\begin{table}[!h]
+
+\caption{\label{tab:dirtab}Top Grossing Movies}
 \centering
-\begin{tabular}{l|r|r}
+\begin{tabular}[t]{l|r|r}
 \hline
 Director & Total Movies & Metascore\\
 \hline
-Damien Chazelle & 4 & 87\\
+\rowcolor{gray!6}  Damien Chazelle & 4 & 87\\
 \hline
 Patrick Wang & 4 & 86\\
 \hline
-Paul Thomas Anderson & 8 & 84\\
+\rowcolor{gray!6}  Paul Thomas Anderson & 8 & 84\\
 \hline
 Spike Jonze & 4 & 84\\
 \hline
-Steve McQueen & 4 & 84\\
+\rowcolor{gray!6}  Steve McQueen & 4 & 84\\
 \hline
 Mike Leigh & 13 & 82\\
 \hline
-Alfonso CuarÃ³n & 8 & 81\\
+\rowcolor{gray!6}  Alfonso CuarÃ³n & 8 & 81\\
 \hline
 Nuri Bilge Ceylan & 8 & 81\\
 \hline
-Bong Joon Ho & 7 & 81\\
+\rowcolor{gray!6}  Bong Joon Ho & 7 & 81\\
 \hline
 Andrey Zvyagintsev & 5 & 81\\
 \hline
 \end{tabular}
 \end{table}
 
-We get some interesting results, as on one hand there is Mike Leigh with as much as 13 movies but a lower average metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average metascore of 87 and 86 respectively.
+We get some interesting results from Table \ref{tab:dirtab}, as on one hand there is Mike Leigh with as much as 13 movies but a lower average Metascore. On the other hand, there are directors like Damien Chazelle and Patrick wang with 4 movies each and an average Metascore of 87 and 86 respectively.
 
-\includegraphics{Report_files/figure-latex/2-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Report_files/figure-latex/dirfig2-1.pdf}
+\caption{\label{fig:dirfig2}Total number of movies for Top Directors}
+\end{figure}
 
 \hypertarget{top-grossing-movie}{%
 \subsection{Top Grossing Movie}\label{top-grossing-movie}}
 
-In this section, we'll look at the top grossing movie of the most successful directors that we established from Table @ref(tab:dir\_tab).
+In this section, we'll look at the top grossing movie of the most successful directors that we established from Table \ref{tab:dirtab}.
 
-\begin{table}[H]
+\begin{table}[!h]
+
+\caption{\label{tab:dirtab2}Director Top grossing movies}
 \centering
-\begin{tabular}{l|l|l}
+\begin{tabular}[t]{l|l|l}
 \hline
 Director & Highest Grossing Movie & Total Revenue\\
 \hline
-Alfonso CuarÃ³n & Harry Potter and the Prisoner of Azkaban & \$796,093,802\\
+\rowcolor{gray!6}  Alfonso CuarÃ³n & Harry Potter and the Prisoner of Azkaban & \$796,093,802\\
 \hline
 Damien Chazelle & La La Land & \$446,092,357\\
 \hline
-Steve McQueen & 12 Years a Slave & \$187,733,202\\
+\rowcolor{gray!6}  Steve McQueen & 12 Years a Slave & \$187,733,202\\
 \hline
 Bong Joon Ho & Gisaengchung & \$109,012,467\\
 \hline
-Spike Jonze & Where the Wild Things Are & \$100,086,793\\
+\rowcolor{gray!6}  Spike Jonze & Where the Wild Things Are & \$100,086,793\\
 \hline
 Paul Thomas Anderson & There Will Be Blood & \$76,181,545\\
 \hline
-Mike Leigh & Mr. Turner & \$22,179,785\\
+\rowcolor{gray!6}  Mike Leigh & Mr. Turner & \$22,179,785\\
 \hline
 Andrey Zvyagintsev & Vozvrashchenie & \$8,482,993\\
 \hline
-Nuri Bilge Ceylan & Kis Uykusu & \$4,018,705\\
+\rowcolor{gray!6}  Nuri Bilge Ceylan & Kis Uykusu & \$4,018,705\\
 \hline
 Patrick Wang & In the Family & \$101,934\\
 \hline
 \end{tabular}
 \end{table}
 
-It can be observed that the \emph{Alfonso Cuarón} is the director of the top grossing movie \emph{Harry Potter and the Prisoner of Azkaban} which made \$796,093,802 worldwide. Followed by, \emph{Damien Chazelle}, the director of \emph{La La Land} grossing \$446,092,35. Suprisingly, \emph{Patrick Wang}, with an average metascore of 86 and a total of 4 movies made the least at just \$101,934.
+It can be observed from Table \ref{tab:dirtab2} that the \emph{Alfonso Cuarón} is the director of the top grossing movie \emph{Harry Potter and the Prisoner of Azkaban} which made \$796,093,802 worldwide. Followed by, \emph{Damien Chazelle}, the director of \emph{La La Land} grossing \$446,092,35. Suprisingly, \emph{Patrick Wang}, with an average metascore of 86 and a total of 4 movies made the least at just \$101,934.
 
-\begin{figure}
+\begin{figure}[H]
 
 {\centering \includegraphics{Report_files/figure-latex/4-1} 
 
@@ -797,77 +794,100 @@ It can be observed that the \emph{Alfonso Cuarón} is the director of the top gr
 \hypertarget{lets-look-at-some-of-the-common-movie-languages.}{%
 \subsubsection{Let's look at some of the common movie languages.}\label{lets-look-at-some-of-the-common-movie-languages.}}
 
-\begin{table}[H]
+\begin{table}[!h]
+
+\caption{\label{tab:langtab}Number of movies per language}
 \centering
-\begin{tabular}{l|r}
+\begin{tabular}[t]{l|r}
 \hline
 Language & Number of Movies\\
 \hline
-507 & 34519\\
+\rowcolor{gray!6}  507 & 34519\\
 \hline
 multi-lingual & 15188\\
 \hline
-1854 & 3777\\
+\rowcolor{gray!6}  1854 & 3777\\
 \hline
 3770 & 2640\\
 \hline
-2875 & 2605\\
+\rowcolor{gray!6}  2875 & 2605\\
 \hline
 2743 & 2565\\
 \hline
-2501 & 1930\\
+\rowcolor{gray!6}  2501 & 1930\\
 \hline
 2206 & 1702\\
 \hline
-3541 & 1235\\
+\rowcolor{gray!6}  3541 & 1235\\
 \hline
 4133 & 1229\\
 \hline
 \end{tabular}
 \end{table}
 
-From the above table, it is quite clear that most movies are released in either only \emph{English} or in \emph{multi-lingual} format.
+From the Table \ref{tab:langtab}, it is quite clear that most movies are released in either only \emph{English} or in \emph{multi-lingual} format.
 
 \hypertarget{is-there-a-pattern-in-movie-length-for-various-languages}{%
 \subsubsection{Is there a pattern in Movie length for various languages?}\label{is-there-a-pattern-in-movie-length-for-various-languages}}
 
-\begin{table}[H]
+\begin{table}[!h]
+
+\caption{\label{tab:langtab2}Average movie duration for all languages}
 \centering
-\begin{tabular}{l|r}
+\begin{tabular}[t]{l|r}
 \hline
 Language & Avg. Movie Duration\\
 \hline
-1854 & 99.38734\\
+\rowcolor{gray!6}  1854 & 99.38734\\
 \hline
 2206 & 96.43831\\
 \hline
-2501 & 140.40466\\
+\rowcolor{gray!6}  2501 & 140.40466\\
 \hline
 2743 & 98.94191\\
 \hline
-2875 & 102.96161\\
+\rowcolor{gray!6}  2875 & 102.96161\\
 \hline
 3541 & 99.78219\\
 \hline
-3770 & 97.35833\\
+\rowcolor{gray!6}  3770 & 97.35833\\
 \hline
 4133 & 96.79170\\
 \hline
-507 & 93.50190\\
+\rowcolor{gray!6}  507 & 93.50190\\
 \hline
 multi-lingual & 106.46787\\
 \hline
 \end{tabular}
 \end{table}
 
-\begin{center}\includegraphics{Report_files/figure-latex/10-1} \end{center}
+\begin{figure}[H]
 
-From the plot above, we can infer that \emph{Hindi} movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, \emph{English} movies are usually the shortest at just 93 minutes.
+{\centering \includegraphics{Report_files/figure-latex/langfig-1} 
 
-\hypertarget{conclusion-1}{%
-\subsection{Conclusion}\label{conclusion-1}}
+}
+
+\caption{Movie Duration for different Languages}\label{fig:langfig}
+\end{figure}
+
+From the Figure \ref{fig:langfig}, we can infer that \emph{Hindi} movies are usually much longer than other languages clocking at an average runtime of 140 minutes. While, \emph{English} movies are usually the shortest at just 93 minutes.
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+\textbf{William's Section Conclusion}
 
 There appears to be a strong correlation between movies that have been given extremely high ratings and the mid 1950's. However, due to the inherent bias within this data set, it is still impossible to identify which periods truly experienced a higher quality of movie production.
+
+\textbf{Xue's Section Conclusion}
+
+In conclusion, the English movie has the largest proportion of language movies within ten years, the drama movie is the favorite movie in all the country.
+
+\textbf{Rahul's Section Conclusion}
+
+In conclusion, we can see a general trend that a movie that is most talked about by the users or fans has grossed the most amount of money compared to lesser popular movies. The number of reviews by users can generally be used to predict if it was a box office hit.
+
+\textbf{Aryan's Section Conclusion}
 
 For Director analysis, it is clear from Figure 1 and Figure 2 that there is no one single way to measure success and that all directors in the list are doing very good in their own ways.
 
