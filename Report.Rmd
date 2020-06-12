@@ -1,11 +1,11 @@
 ---
 title: "ETC5513 Assignment 4: IMDB Data Analysis"
 author:
-- familyname: 
-  othernames: 
+- familyname: Nguyen
+  othernames: Will
   title: Mr
-  qualifications: Master of Business Analytics
-  email: rmys0001@student.monash.edu
+  qualifications: Master of Actuarial Science
+  email: wngu0007@student.monash.edu
   correspondingauthor: true
 - familyname: Xue
   othernames: Wang
@@ -53,6 +53,10 @@ library(scales)
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, cache=TRUE, message=FALSE, warning = FALSE, fig.pos = "H")
 ```
+
+# Introduction
+
+Due to the effects of Covid-19, there has been a significant increase in demand for in-home entertainment. One particular form of this entertainment that continues to thrive due to streaming services such as Netflix and Stan is watching movies. This report will be analysing a large dataset from the popular reviews website, IMDb. It will attempt to answer questions such as what periods experienced a significantly higher quality of movies and which streaming services offer the greatest variety of movies.
 
 ```{r Loading dataset,echo = FALSE}
 dat <- read.csv(here::here("Data/IMDb movies.csv"))
@@ -245,6 +249,7 @@ kable(
 drama_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of movies genres in each country' )
 ```
 
+\newpage
 # Rahul's Section.
 
 ## Movie Grosses and Popularity Analysis
@@ -516,7 +521,6 @@ For Director analysis, it is clear from Figure 1 and Figure 2 that there is no o
 
 And from the Movie length analysis, we can infer that Hindi Movies are usually significantly longer than any other kind of movies. Also, english movies are among the shortest. We also concluded that movie language has an impact on movie length.
 
-
 # Citations
 
 tidyverse @tidyverse
@@ -527,6 +531,6 @@ kableExtra @kableExtra
 
 treemap @treemap
 
-scales @scales
-
 viridis @viridis
+
+scales @scales
