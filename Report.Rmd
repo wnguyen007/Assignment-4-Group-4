@@ -263,8 +263,6 @@ drama_genre_country[1:5,],booktabs = TRUE, caption = ' The largest number of mov
 ```{r LoadingDataset, message=FALSE, warning=FALSE, echo=FALSE}
 #reading data from the csv file in "Data" folder
 data <- read.csv(here::here("Data/IMDb movies.csv"))
-#sample of raw data with columns and observations 
-glimpse(data)
 ```
 
 ```{r CleaningData, echo=FALSE, message=FALSE, warning=FALSE}
